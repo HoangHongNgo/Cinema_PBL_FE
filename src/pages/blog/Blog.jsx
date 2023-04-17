@@ -8,6 +8,7 @@ const Blog=()=>{
     return(
        
         <>
+            
             <div className="background" style={{backgroundImage: "url('https://moveek.com/build/images/tix-banner.36bfeb64.png')" }}>
                 <div className="content">
                     <h1 className="text-content">Đánh giá Phim</h1>
@@ -16,13 +17,13 @@ const Blog=()=>{
                     </div>
                 </div>
             </div>
-
             <div className="container__table">
+            
                 <div className="row">
                     <div className="columnleft">    
                         <div className="card">
                             <div className="card__header bg-light">
-                                <div className="testxongxoa">Mới nhất</div>
+                                <div className="text-header">Mới nhất</div>
                             </div>
                             <div className="card__body">
                                 <div className="article">
@@ -115,7 +116,7 @@ const Blog=()=>{
                     <div className="columnright">
                         <div className="card card-article">
                             <div className="card-header bg-light">
-                                <div className="card-header-title testxongxoa"> Chuyên mục</div>
+                                <div className="card-header-title text-header"> Chuyên mục</div>
                             </div>
 
                             <div className="border-bottom">

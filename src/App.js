@@ -8,6 +8,7 @@ import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
 
 import Routes from "./config/Routes";
+import DetailBlog from "./pages/detailblog/DetailBlog";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
            <>
             <Header {...props} />
             <Routes />
-            
+            <DetailBlog/>
             <Footer />
              
 
