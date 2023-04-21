@@ -4,47 +4,54 @@ import { useParams } from 'react-router';
 import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
+
+
 import './detail.scss';
 
 import CastList from './CastList';
 import VideoList from './VideoList';
 import MovieList from '../../components/movie-list/MovieList';
+import axios from 'axios';
 
 
 
 const Detail = () => {
 
+    
+    
     console.log("details page");
 
-    const{category, id}= useParams();
+    
 
     const[item, setItem]=useState(null);
 
     useEffect(()=>{
         const getDetail= async()=>{
-            const response = await tmdbApi.detail(category,id,{params:{}});
-            setItem(response);
+            const response = await axios.get(`https://cinema-00wj.onrender.com/movies/1`);
+            setItem(response.data);
+            
             window.scrollTo(0,0);
-        }
+            console.log(item);
+        };
         getDetail();
 
 
-    },[category,id]);
+    },[]);
     return (
         <>
             
             {
-              true &&(
+              item  &&(
                 
                 <>
-                    <div className='banner' style={{backgroundImage: "url('https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/full/64056738cc4fb719491203.jpg')"}} ></div>
+                    <div className='banner' style={{backgroundImage: `url(${item.banner_image})` }} ></div>
                         <div className="mb-3 movie-content container">
                             <div className='movie-content__poster'>
                                 <div className='movie-content__poster__img' style={{backgroundImage: "url('https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/full/64056738cc4fb719491203.jpg')" }}></div>
                             </div>
                             <div className='movie-content__info'>
                                 <h1 className='title'>
-                                    Tên Phim
+                                    {item.name};
                                 </h1>
                                 <div className='genres'>
                                     <span className='genres__item'>Tình cảm </span>

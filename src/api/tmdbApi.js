@@ -1,8 +1,9 @@
 import axiosClient from "./axiosClient";
 import apiConfig from "./apiConfig";
+import apiUrl from "./apiUrl";
 
 export const category = {
-  movie: "movie",
+  movie: "https://cinema-00wj.onrender.com/movies",
   // tv: "tv",
 };
 
@@ -66,10 +67,12 @@ const tmdbApi_1 = {
   //   const url = "search/" + category[cate];
   //   return axiosClient.get(url, params);
   // },
-  // detail: (cate, id, params) => {
-  //   const url = category[cate] + "/" + id;
-  //   return axiosClient.get(url, params);
-  // },
+   detail: (cate, id, params) => {
+      const url = category[cate] + "/" + id;
+      console.log(url);
+      return axiosClient.get(url, params);
+      
+  },
   // credits: (cate, id) => {
   //   const url = category[cate] + "/" + id + "/credits";
   //   return axiosClient.get(url, { params: {} });
