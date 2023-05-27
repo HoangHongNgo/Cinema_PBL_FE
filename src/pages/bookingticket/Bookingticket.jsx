@@ -221,7 +221,7 @@ const Bookingticket=()=> {
     setActiveStep(0);
   };
 
-  const [state, setState] = useState(0);
+  const [state, setState] = useState({});
 
   function getStepContent(stepIndex){
 

@@ -11,22 +11,19 @@ const ChoiceSeat=(props)=>{
 
     const handleSeatClick = (seat) => {
         let updatedSelectedSeats = [];
-        if (selectedSeats.includes(seat)) {
+        if (selectedSeats.includes(seat)) {   
     // Nếu ghế đã được chọn, hủy bỏ lựa chọn
             updatedSelectedSeats = selectedSeats.filter((s) => s !== seat);
         } else {
     // Nếu ghế chưa được chọn, thêm vào lựa chọn
         updatedSelectedSeats = [...selectedSeats, seat];
         }
-
         setSelectedSeats(updatedSelectedSeats);
-        const totalAmount = calculateTotalAmount(updatedSelectedSeats);
-        setState(totalAmount);
     };
-   
-          
-
-     
+    
+    useEffect(() => {
+        setState({price: calculateTotalAmount()});    
+    }, [selectedSeats]);    
 
       useEffect(() => {
         // Nhóm các phần tử theo thuộc tính seat_row
@@ -44,21 +41,16 @@ const ChoiceSeat=(props)=>{
     
         groupSeats();
       }, [seats]);
-
-
-      
-      
-      const calculateTotalAmount = () => {
+     
+     const calculateTotalAmount = () => {
         let selectedSeatsPrice = 0;
   
         selectedSeats.forEach(seat => {
             selectedSeatsPrice += parseFloat(seat.price);
         });
+        console.log("calculateTotalAmount = ",selectedSeatsPrice)
         return selectedSeatsPrice.toFixed(2);
         };
-
-      
-    
 
     return(
 
@@ -95,7 +87,7 @@ const ChoiceSeat=(props)=>{
                             <div className="col-ticket">
                                 <h6 className="textticket text-uppercase mb-2">Tổng đơn hàng</h6>
                                 <span className="h2 mb-0 textticket">
-                                    {state} đ
+                                    {state.price} đ
                                 </span>
                             </div>
                             <div className="col-ticket text-right border-left">
