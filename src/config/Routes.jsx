@@ -17,7 +17,7 @@ const Routes = () => {
       <Route path="/buyticket" component={Buy_ticket} />
 
       <Route path="/:category/search/:keyword" component={Catalog} />
-      <Route path="/detail" exact component={Detail}/>
+      <Route path="/detail/:id" exact component={Detail}/>
      
       <Route path="/blog" exact component={Blog} />
       <Route path="/" exact component={Home} />

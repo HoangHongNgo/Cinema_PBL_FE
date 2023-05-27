@@ -9,6 +9,10 @@ import Footer from "./components/footer/Footer.jsx";
 
 import Routes from "./config/Routes";
 
+
+import Blog from "./pages/blog/Blog";
+import Bookingticket from "./pages/bookingticket/Bookingticket";
+
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +21,8 @@ function App() {
           <>
             <Header {...props} />
             <Routes />
+            
+            <Bookingticket></Bookingticket>
             <Footer />
           </>
         )}

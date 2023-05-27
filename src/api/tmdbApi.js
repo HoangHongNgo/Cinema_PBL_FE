@@ -67,16 +67,16 @@ const tmdbApi_1 = {
   //   const url = "search/" + category[cate];
   //   return axiosClient.get(url, params);
   // },
-   detail: (cate, id, params) => {
-      const url = category[cate] + "/" + id;
+   detail: (id) => {
+      const url = `movies/${id}/`;
       console.log(url);
-      return axiosClient.get(url, params);
+      return axiosClient.get(url);
       
   },
-  // credits: (cate, id) => {
-  //   const url = category[cate] + "/" + id + "/credits";
-  //   return axiosClient.get(url, { params: {} });
-  // },
+  credits: (id) => {
+     const url =  `movies/${id}/`;
+     return axiosClient.get(url);
+   },
   // similar: (cate, id) => {
   //   // const url = category[cate] + "/" + id + "/similar";
   //   const url = `${category[cate]}/${id}/similar?api_key=${apiConfig.apiKey}`;
