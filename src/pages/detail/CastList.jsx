@@ -7,24 +7,25 @@ import apiConfig from "../../api/apiConfig";
 
 const CastList= props => {
 
-    const {category}=useParams();
-
+    
+    console.log("cast list");
     const [casts,setCasts]=useState([]);
 
     useEffect(()=>{
         const getCredits=async()=>{
-            const res= await tmdbApi.credits(category, props.id);
-            setCasts(res.cast.slice(0, 5));
+            const res= await tmdbApi.credits(props.id);
+            setCasts(res.slice(0, 5));
+            console.log(res);
         }
         getCredits();
-    },[category, props.id]);
+    },[props.id]);
     return(
         <div className="casts">
             {
-                casts.map((item,i)=>(
+                casts.map((cast,i)=>(
                     <div key={i} className="cats__item">
-                        <div className="casts__item__img" style={{backgroundImage: `url(${apiConfig.w500Image(item.profile_path)})`}}></div>
-                        <p className="casts__item__name">{item.name}</p>
+                        <div className="casts__item__img" style={{backgroundImage: `url(${cast.image_path})`}}></div>
+                        <p className="casts__item__name">{cast.name}</p>
 
                     </div>
                 ))

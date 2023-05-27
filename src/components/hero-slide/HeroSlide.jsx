@@ -159,10 +159,10 @@ const HeroSlideItem = (props) => {
           {/* <div className="overview">{item.overview}</div> */}
           <div className="overview">{first20Words.join(" ")} ...</div>
           <div className="btns">
-            <Button onClick={() => history.push("/movie/" + item.id)}>
+            <Button onClick={() => history.push("/detail/1")}>
               Đặt vé
             </Button>
-            <OutlineButton onClick={setModalActive}>Chi tiết</OutlineButton>
+            <OutlineButton onClick={() => history.push("/detail/" + item.id)}>Chi tiết</OutlineButton>
           </div>
         </div>
         <div className="hero-slide__item__content__poster">

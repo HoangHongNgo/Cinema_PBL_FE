@@ -1,0 +1,190 @@
+import React, { useContext } from "react";
+import Ticket from "../../context/Ticket";
+
+
+
+import './Bookingticket.scss';
+
+const Payment=(props)=>{
+
+    const [state, setState]=useContext(Ticket)
+
+
+    return(
+    <div className="">
+        <div className="rowticket">
+            <div className="col-lg-4 col-12 order-sm-last">
+                <div className="cardticket sticky-header-bars">
+                    <div className="cardticket-body">
+                        <div className="rowticket align-items-center">
+                            <div className="col-ticket">
+                                <h6 className="text-uppercase text-sky-400 textticket mb-2">
+                                    Tổng đơn hàng
+                                </h6>
+                                <span className="h2 mb-0 textticket">
+                                    {state.price}
+                                </span>
+                            </div>
+                            <div className="col-ticket text-right border-left  ">
+                                <h6 className="text-uppercase mb-2 textticket">
+                                    Thời gian giữ ghế
+                                </h6>
+                                <span className="h2 mb-0 textticket">
+                                    00:00
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="cardticket d-lg-bloc">
+                    <div className="cardticket-body textticket">
+                        
+                        Vé đã mua không thể đổi hoặc hoàn tiền.
+                        <br></br>
+                        Mã vé sẽ được gửi <strong>01</strong>  lần qua số điện thoại và email đã nhập. Vui lòng kiểm tra lại thông tin trước khi tiếp tục.
+                            
+                    </div>
+                </div>
+                
+            </div>
+            <div className="col-lg-8 col-12">
+                <div>
+                    <div className="cardticket">
+                        <div className="cardticket-header bg-light">
+                            <div className="textticket">
+                                Tóm tắt đơn hàng
+                            </div>
+                        </div>
+                        <div className="table-responsive">
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mô tả</th>
+                                        <th className="text-center">Số lượng</th>
+                                        <th className="text-right">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ghế Đơn</td>
+                                        <td className="text-center">1</td>
+                                        <td className="text-right"> đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phí tiện ích</td>
+                                        <td className="text-center"></td>
+                                        <td className="text-right"> 3,000 đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan={2}>Tổng</td>
+                                        <td className="text-right"> 63,000 đ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="cardticket">
+                        <div className="cardticket-header bg-light">
+                            <div className="textticket">
+                                Hình thức thanh toán
+                            </div>
+                        </div>
+                        <div className="cardticket-body">
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+                            <div className="payment-gateway active"> 
+                                <i className="fe pg-checked"></i>
+                                <div className="pg-info textticket">
+                                    <img src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png"></img>
+                                    Ví MoMo
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="cardticket">
+                        <div className="cardticket-header bg-light">
+                            <div className="textticket">
+                                Thông tin cá nhân
+                            </div>
+                        </div>
+                        <div className="cardticket-body">
+                            <div className="form-group">
+                                <label> Họ và tên</label>
+                                <input type="text" className="form-control"></input>
+                            </div>
+                            <div className="form-group">
+                                <label> Email</label>
+                                <input type="text" className="form-control"></input>
+                            </div>
+                            <div className="form-group">
+                                <label> Số Điện Thoại</label>
+                                <input type="text" className="form-control"></input>
+                            </div>
+                            <div className="form-group">
+                                <div className="form-check">
+                                    <input type="checkbox" className="form-check-input" name="orn_ticketing_order_customer[registered]"></input>
+                                    <label>Tạo tài khoản với email và số điện thoại này</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="cardticket d-lg-none"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    );
+}
+
+export default Payment;
+
+
