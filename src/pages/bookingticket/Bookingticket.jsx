@@ -18,6 +18,7 @@ import Payment from './Payment';
 import axios from 'axios';
 import Ticket from '../../context/Ticket';
 import 'tailwindcss/tailwind.css'
+import ListTicket from '../../context/ListTicket';
 
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
@@ -222,7 +223,10 @@ const Bookingticket=()=> {
     setActiveStep(0);
   };
 
+  
+
   const [state, setState] = useState({});
+  const[list, setList]=useState([]);
 
   function getStepContent(stepIndex){
 
@@ -238,6 +242,7 @@ const Bookingticket=()=> {
   }
 
   return (
+    <ListTicket.Provider value={[list, setList]}>
     <Ticket.Provider value={[state, setState]}>
     <Stack sx={{ width: '100%' }} spacing={4}>
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
@@ -288,6 +293,7 @@ const Bookingticket=()=> {
       )}
     </Stack>
     </Ticket.Provider>
+    </ListTicket.Provider>
   );
 }   
 

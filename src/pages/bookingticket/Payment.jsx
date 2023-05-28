@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import ListTicket from "../../context/ListTicket";
 import Ticket from "../../context/Ticket";
 
 
@@ -8,6 +9,7 @@ import './Bookingticket.scss';
 const Payment=(props)=>{
 
     const [state, setState]=useContext(Ticket)
+    const[list,setList]=useContext(ListTicket);
 
 
     return(
@@ -18,21 +20,14 @@ const Payment=(props)=>{
                     <div className="cardticket-body">
                         <div className="rowticket align-items-center">
                             <div className="col-ticket">
-                                <h6 className="text-uppercase text-sky-400 textticket mb-2">
+                                <h6 className="text-uppercase text-center text-black">
                                     Tổng đơn hàng
                                 </h6>
-                                <span className="h2 mb-0 textticket">
-                                    {state.price}
+                                <span className="h2 text-center text-black">
+                                    {parseInt(state.price)+3.000}.000 đ
                                 </span>
                             </div>
-                            <div className="col-ticket text-right border-left  ">
-                                <h6 className="text-uppercase mb-2 textticket">
-                                    Thời gian giữ ghế
-                                </h6>
-                                <span className="h2 mb-0 textticket">
-                                    00:00
-                                </span>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -67,17 +62,17 @@ const Payment=(props)=>{
                                 <tbody>
                                     <tr>
                                         <td>Ghế Đơn</td>
-                                        <td className="text-center">1</td>
-                                        <td className="text-right"> đ</td>
+                                        <td className="text-center">{list.length}</td>
+                                        <td className="text-right">{state.price} đ</td>
                                     </tr>
                                     <tr>
                                         <td>Phí tiện ích</td>
                                         <td className="text-center"></td>
-                                        <td className="text-right"> 3,000 đ</td>
+                                        <td className="text-right"> 3.000 đ</td>
                                     </tr>
                                     <tr>
                                         <td colSpan={2}>Tổng</td>
-                                        <td className="text-right"> 63,000 đ</td>
+                                        <td className="text-right">{parseInt(state.price)+3.000}.000 đ</td>
                                     </tr>
                                 </tbody>
                             </table>

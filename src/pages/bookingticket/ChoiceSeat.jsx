@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import './Bookingticket.scss';
 import Ticket from "../../context/Ticket";
 import 'tailwindcss/tailwind.css'
+import ListTicket from "../../context/ListTicket";
 
 const ChoiceSeat=(props)=>{
 
@@ -9,6 +10,7 @@ const ChoiceSeat=(props)=>{
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [groupedSeats, setGroupedSeats] = useState({});
     const [state, setState]=useContext(Ticket);
+    const[list, setList]=useContext(ListTicket);
 
     const handleSeatClick = (seat) => {
         let updatedSelectedSeats = [];
@@ -20,6 +22,7 @@ const ChoiceSeat=(props)=>{
         updatedSelectedSeats = [...selectedSeats, seat];
         }
         setSelectedSeats(updatedSelectedSeats);
+        setList(updatedSelectedSeats);
     };
     
     useEffect(() => {
@@ -50,7 +53,7 @@ const ChoiceSeat=(props)=>{
             selectedSeatsPrice += parseFloat(seat.price);
         });
         console.log("calculateTotalAmount = ",selectedSeatsPrice)
-        return selectedSeatsPrice.toFixed(2);
+        return selectedSeatsPrice.toFixed(3);
         };
 
     return(
@@ -74,16 +77,7 @@ const ChoiceSeat=(props)=>{
                                 <p className="textticket text-truncate" >
                                     Phòng Chiếu
                                     <strong className="marginticket-left"> 01 </strong>
-                                    - Ghế
-                                    { Object.entries(groupedSeats).map(([seatRow, seatsInRow])=>(
-                                         <div key={seatRow} className="display: inline-block ">
-                                            {seatsInRow.map((seat)=>(
-                                                <span key={seat.id} className="font-weight-bold mx-0.25">
-                                                    {selectedSeats.includes(seat) ? seatRow + seat.seat_num : null}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    ))}
+                                   
                                 </p>
                             </div>
 
@@ -99,12 +93,7 @@ const ChoiceSeat=(props)=>{
                                     {state.price} đ
                                 </span>
                             </div>
-                            <div className="col-ticket text-right border-left">
-                                <h6 className="textticket text-uppercase mb-2">
-                                    Thời gian giữ ghế
-                                </h6>
-                                <span className="h2 mb-0 textticket"> 00:00 </span>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
