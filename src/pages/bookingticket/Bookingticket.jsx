@@ -17,6 +17,8 @@ import ChoiceSeat from './ChoiceSeat';
 import Payment from './Payment';
 import axios from 'axios';
 import Ticket from '../../context/Ticket';
+import 'tailwindcss/tailwind.css'
+
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
