@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import './Bookingticket.scss';
 import Ticket from "../../context/Ticket";
+import 'tailwindcss/tailwind.css'
 
 const ChoiceSeat=(props)=>{
 
@@ -55,7 +56,7 @@ const ChoiceSeat=(props)=>{
 
     return(
 
-        <div className="rowticket">
+        <div className="rowticket ">
             <div className="col-lg-4 col-12 order-sm-last">
                 <div className="cardticket cardticket-sm">
                     <div className="cardticket-body">
@@ -75,7 +76,15 @@ const ChoiceSeat=(props)=>{
                                     Phòng Chiếu
                                     <strong className="marginticket-left"> 01 </strong>
                                     - Ghế
-                                    <span className="font-weight-bold">. . .</span>
+                                    { Object.entries(groupedSeats).map(([seatRow, seatsInRow])=>(
+                                         <div key={seatRow} className="display: inline-block ">
+                                            {seatsInRow.map((seat)=>(
+                                                <span key={seat.id} className="font-weight-bold mx-0.25">
+                                                    {selectedSeats.includes(seat) ? seatRow + seat.seat_num : null}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    ))}
                                 </p>
                             </div>
 

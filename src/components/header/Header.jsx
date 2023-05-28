@@ -1,12 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect} from "react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./header.scss";
 
-import logo from "../../assets/tmovie.png";
+
 const Header = () => {
-  const { pathname } = useLocation();
+  //const { pathname } = useLocation();
   const headerRef = useRef(null);
   // const active = headerNav.findIndex(e=>e.path === pathname);
 
@@ -26,7 +26,7 @@ const Header = () => {
       window.removeEventListener("scroll", shrinkHeader);
     };
   }, []);
-  const [selectedItem, setSelectedItem] = useState(null);
+  //const [selectedItem, setSelectedItem] = useState(null);
 
   return (
     <div ref={headerRef} className="header">

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import "./login.scss";
 import { Link } from "react-router-dom";
@@ -7,9 +8,13 @@ import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
 import { login } from "../../api/auth.api";
+import axios from 'axios';
 
 const loginSchema = schema.omit(["confirm_password"]);
 export const Login = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -22,14 +27,24 @@ export const Login = () => {
   });
 
   // const onSubmit = (data) => console.log(data);
-  const onSubmit = handleSubmit((data) => {
-    loginMutation.mutate(data, {
-      onSuccess: (data) => {
+  const onSubmit = handleSubmit( (e) => {
+    // e.preventDefault();
+  //   console.log(username);
+  //      axios.post('https://cinema-00wj.onrender.com/user/login/',{email:username, password:password})
+  //     .then((response) => {
+  //       console.log(response.data)
+  //     })
+  //     .catch((error) => {console.log(error.message)});
+    
+  // }
+    
+    // loginMutation.mutate(data, {
+    //   onSuccess: (data) => {
         // setIsAuthenticated(true);
         // setProfile(data.data.data.user);
         // navigate("/");
-        console.log(data);
-      },
+      //   console.log(data);
+      // },
       //   onError: (error) => {
       //     if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
       //       const formError = error.response?.data.data
@@ -44,7 +59,7 @@ export const Login = () => {
       //       }
       //     }
       //   }
-    });
+      // );
   });
 
   return (
@@ -73,6 +88,10 @@ export const Login = () => {
                 errorMessage={errors.email?.message}
                 type="email"
                 className="form_input"
+                onChange={(e) => {
+                  console.log(username);
+                  setUsername(e.target.value);
+                }}
               />
 
               <Input
@@ -84,6 +103,9 @@ export const Login = () => {
                 type="password"
                 className="form_input"
                 autoComplete="on"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
             <div className="button_form">
