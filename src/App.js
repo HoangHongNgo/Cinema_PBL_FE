@@ -2,6 +2,7 @@ import "swiper/swiper.min.css";
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
 import "./App.scss";
 import React from "react";
+import 'tailwindcss/tailwind.css'
 
 import { BrowserRouter, Route } from "react-router-dom"; //v5
 import Header from "./components/header/Header.jsx";

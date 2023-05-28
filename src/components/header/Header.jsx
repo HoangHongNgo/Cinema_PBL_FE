@@ -2,14 +2,14 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import AppContext from "../../contexts/app.context";
 import { GetToken } from "../../utils/Common";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./header.scss";
 
-import logo from "../../assets/tmovie.png";
+
 const Header = () => {
   const {isLoggedIn, setIsLoggedIn} = useContext(AppContext)
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   const headerRef = useRef(null);
   // const active = headerNav.findIndex(e=>e.path === pathname);
 
@@ -30,7 +30,7 @@ const Header = () => {
       window.removeEventListener("scroll", shrinkHeader);
     };
   }, []);
-  const [selectedItem, setSelectedItem] = useState(null);
+  //const [selectedItem, setSelectedItem] = useState(null);
 
   return (
     <div ref={headerRef} className="header">

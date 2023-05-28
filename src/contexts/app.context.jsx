@@ -1,7 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import axiosClient from "../api/axiosClient";
-import { getCity } from "../api/lichchieu.api";
-import { useQuery } from "@tanstack/react-query";
+import { createContext, useState } from "react";
+
 
  const AppContext = createContext();
 

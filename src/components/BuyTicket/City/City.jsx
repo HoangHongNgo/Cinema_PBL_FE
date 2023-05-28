@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext } from "react";
-import { AppContext } from "../../../contexts/app.context";
+import React from "react";
+
 import { useQuery } from "@tanstack/react-query";
 import { getCity } from "../../../api/lichchieu.api";
 
