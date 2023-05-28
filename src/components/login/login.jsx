@@ -7,7 +7,7 @@ import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
 import { login } from "../../api/auth.api";
-
+//liem
 const loginSchema = schema.omit(["confirm_password"]);
 export const Login = () => {
   const {
