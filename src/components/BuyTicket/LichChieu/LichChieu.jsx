@@ -1,49 +1,30 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext } from "react";
-import { AppContext } from "../../../contexts/app.context";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import ShowtimesDate from './../Date/Date';
 
 export default function LichChieu() {
-  const { isActive } = useContext(AppContext);
 
+  const queryParams = new URLSearchParams(window.location.search);
+  const cinemaId = queryParams.get("cinema");
+  const [shows, setShows] = useState([]);
+  console.log("cinema : ", cinemaId);
+  useEffect(() => {
+    // Lấy dữ liệu từ API bằng Axios
+    axios.get(`https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}`)
+      .then((response) => {
+        setShows(response.data);
+        console.log("show : ", response.data);
+      })
+      .catch((error) => {
+        console.error('Lỗi khi lấy dữ liệu từ API:', error);
+      });
+  }, [cinemaId]);
   return (
     <>
-      {isActive ? (
-        <div className="non-showtimes">Bạn chưa chọn rạp.</div>
-      ) : (
         <div className="col-2">
           <div id="showtimes">
-            <div className="showtimes">
-              <a href="#" className="showtimes_date" data-date="2023-04-11">
-                11/4
-                <br />
-                <span className="small text-nowrap">Th 3</span>
-              </a>
-              <a href="#" className="showtimes_date" data-date="2023-04-12">
-                12/4
-                <br />
-                <span className="small text-nowrap">Th 4</span>
-              </a>
-              <a href="#" className="showtimes_date" data-date="2023-04-13">
-                13/4
-                <br />
-                <span className="small text-nowrap">Th 5</span>
-              </a>
-              <a href="#" className="showtimes_date" data-date="2023-04-14">
-                14/4
-                <br />
-                <span className="small text-nowrap">Th 6</span>
-              </a>
-              <a href="#" className="showtimes_date" data-date="2023-04-15">
-                15/4
-                <br />
-                <span className="small text-nowrap">Th 7</span>
-              </a>
-              <a href="#" className="showtimes_date" data-date="2023-04-16">
-                16/4
-                <br />
-                <span className="small text-nowrap">CN</span>
-              </a>
-            </div>
+            <ShowtimesDate />
 
             <div className="alert">
               <i className="alert_icon">ℹ️</i>
@@ -113,68 +94,18 @@ export default function LichChieu() {
                   </label>
 
                   <div className="card_price">
-                    <div className="card_content">
-                      <a
-                        href="/mua-ve/cinestar/118366/3b68ce31-0606-4d83-9eff-1d23708c95da"
-                        className="card_datePrice"
-                      >
-                        <span className="time">14:00</span>
-                        <span className="amenity price">65K</span>
-                      </a>{" "}
-                    </div>
-                    <div>
-                      <a
-                        href="/mua-ve/cinestar/118366/7d5a9bff-658e-4410-b60e-1c5703b05c22"
-                        className="card_datePrice"
-                      >
-                        <div className="card_content">
-                          <span className="time">15:35</span>
-                          <span className="amenity price">65K</span>
-                        </div>
-                      </a>{" "}
-                    </div>
-                    <div>
-                      <a
-                        href="/mua-ve/cinestar/118366/e6ed1bd9-4b6f-444f-81d1-d71093a699f5"
-                        className="card_datePrice"
-                      >
-                        <div className="card_content">
-                          <span className="time">16:35</span>
-                          <span className="amenity price">65K</span>
-                        </div>
-                      </a>{" "}
-                    </div>
-
-                    <div>
-                      <a
-                        href="/mua-ve/cinestar/118366/80053869-3caf-4c75-85af-85bf237fabe0"
-                        className="card_datePrice"
-                      >
-                        <div className="card_content">
-                          <span className="time">18:15</span>
-                          <span className="amenity price">70K</span>
-                        </div>
-                      </a>{" "}
-                    </div>
-
-                    <div>
-                      <a
-                        href="/mua-ve/cinestar/118366/267524c9-621f-454b-b6eb-5259da4c2f60"
-                        className="card_datePrice"
-                      >
-                        <div className="card_content">
-                          <span className="time">19:15</span>
-                          <span className="amenity price">70K</span>
-                        </div>
-                      </a>
-                    </div>
+                    <a >
+                      <span className="text-red-500">10:00</span>
+                    </a>
+                    <a>
+                      <span>10:30</span>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )}
     </>
   );
 }

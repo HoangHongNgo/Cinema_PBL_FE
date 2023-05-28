@@ -237,6 +237,7 @@ const Bookingticket=()=> {
 
   return (
     <Ticket.Provider value={[state, setState]}>
+    <div className='container'>
     <Stack sx={{ width: '100%' }} spacing={4}>
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {steps.map((label) => (
@@ -285,6 +286,7 @@ const Bookingticket=()=> {
         
       )}
     </Stack>
+    </div>
     </Ticket.Provider>
   );
 }   

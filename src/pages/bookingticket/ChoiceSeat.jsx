@@ -19,6 +19,7 @@ const ChoiceSeat=(props)=>{
         updatedSelectedSeats = [...selectedSeats, seat];
         }
         setSelectedSeats(updatedSelectedSeats);
+        setState({price: calculateTotalAmount()})
     };
     
     useEffect(() => {
@@ -66,7 +67,7 @@ const ChoiceSeat=(props)=>{
                                 </p>
                                 <p className="textticket text-truncate" >
                                     Suất
-                                    <strong className="marginticket-left">20:30</strong>
+                                    <strong className="marginticket-left"></strong>
                                      - Hôm nay,
                                      <strong> 22/05 </strong>
                                 </p>
