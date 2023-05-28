@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import './Bookingticket.scss';
 import Ticket from "../../context/Ticket";
+import 'tailwindcss/tailwind.css'
 
 const ChoiceSeat=(props)=>{
 
@@ -54,7 +55,7 @@ const ChoiceSeat=(props)=>{
 
     return(
 
-        <div className="rowticket">
+        <div className="rowticket ">
             <div className="col-lg-4 col-12 order-sm-last">
                 <div className="cardticket cardticket-sm">
                     <div className="cardticket-body">
