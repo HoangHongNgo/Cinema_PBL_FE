@@ -75,7 +75,15 @@ const ChoiceSeat=(props)=>{
                                     Phòng Chiếu
                                     <strong className="marginticket-left"> 01 </strong>
                                     - Ghế
-                                    <span className="font-weight-bold">. . .</span>
+                                    { Object.entries(groupedSeats).map(([seatRow, seatsInRow])=>(
+                                         <div key={seatRow} className="display: inline-block ">
+                                            {seatsInRow.map((seat)=>(
+                                                <span key={seat.id} className="font-weight-bold mx-0.25">
+                                                    {selectedSeats.includes(seat) ? seatRow + seat.seat_num : null}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    ))}
                                 </p>
                             </div>
 
