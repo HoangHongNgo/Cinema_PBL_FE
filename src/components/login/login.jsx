@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import "./login.scss";
 import { Link } from "react-router-dom";
@@ -8,13 +8,18 @@ import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
 import { login } from "../../api/auth.api";
-import axios from 'axios';
+import  AppContext  from "../../contexts/app.context";
+import { useHistory } from 'react-router-dom';
+import {RemovedUserSession} from '../../utils/Common'
 
 const loginSchema = schema.omit(["confirm_password"]);
 export const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
+  const {setIsLoggedIn} = useContext(AppContext);
+  useEffect(()=>{
+    RemovedUserSession()
+    setIsLoggedIn(false);
+  },[])
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -26,40 +31,13 @@ export const Login = () => {
     mutationFn: (body) => login(body),
   });
 
-  // const onSubmit = (data) => console.log(data);
-  const onSubmit = handleSubmit( (e) => {
-    // e.preventDefault();
-  //   console.log(username);
-  //      axios.post('https://cinema-00wj.onrender.com/user/login/',{email:username, password:password})
-  //     .then((response) => {
-  //       console.log(response.data)
-  //     })
-  //     .catch((error) => {console.log(error.message)});
-    
-  // }
-    
-    // loginMutation.mutate(data, {
-    //   onSuccess: (data) => {
-        // setIsAuthenticated(true);
-        // setProfile(data.data.data.user);
-        // navigate("/");
-      //   console.log(data);
-      // },
-      //   onError: (error) => {
-      //     if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
-      //       const formError = error.response?.data.data
-
-      //       if (formError) {
-      //         Object.keys(formError).forEach((key) => {
-      //           setError(key as keyof FormData, {
-      //             message: formError[key as keyof FormData],
-      //             type: 'Server'
-      //           })
-      //         })
-      //       }
-      //     }
-      //   }
-      // );
+  const onSubmit = handleSubmit((data) => {
+    loginMutation.mutate(data, {
+      onSuccess: (data) => {
+        setIsLoggedIn(true);
+        history.push('/');
+      },
+    });
   });
 
   return (
@@ -88,10 +66,6 @@ export const Login = () => {
                 errorMessage={errors.email?.message}
                 type="email"
                 className="form_input"
-                onChange={(e) => {
-                  console.log(username);
-                  setUsername(e.target.value);
-                }}
               />
 
               <Input
@@ -103,9 +77,6 @@ export const Login = () => {
                 type="password"
                 className="form_input"
                 autoComplete="on"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
               />
             </div>
             <div className="button_form">
