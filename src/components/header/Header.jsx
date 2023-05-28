@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
+import AppContext from "../../contexts/app.context";
+import { GetToken } from "../../utils/Common";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -6,11 +8,13 @@ import "./header.scss";
 
 import logo from "../../assets/tmovie.png";
 const Header = () => {
+  const {isLoggedIn, setIsLoggedIn} = useContext(AppContext)
   const { pathname } = useLocation();
   const headerRef = useRef(null);
   // const active = headerNav.findIndex(e=>e.path === pathname);
 
   useEffect(() => {
+    setIsLoggedIn(GetToken() ? true : false);
     const shrinkHeader = () => {
       if (
         document.body.scrollTop > 100 ||
@@ -102,8 +106,8 @@ const Header = () => {
             </ul>
           </li>
         </ul>
-
-        <ul className="header__user">
+                    {!isLoggedIn ? (<ul className="header__user">
+          
           <li className="dropdown__user">
             <Link to="/login">Đăng nhập</Link>
           </li>
@@ -111,7 +115,13 @@ const Header = () => {
           <li>
             <Link to="/register">Đăng ký</Link>
           </li>
-        </ul>
+        </ul>):(<ul className="header__user">
+          
+          <li className="dropdown__user">
+            <Link to="/login">Đăng xuất</Link>
+          </li>
+        </ul>)}
+        
       </div>
     </div>
   );

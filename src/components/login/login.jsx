@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import "./login.scss";
 import { Link } from "react-router-dom";
@@ -7,9 +8,18 @@ import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
 import { login } from "../../api/auth.api";
-//liem
+import  AppContext  from "../../contexts/app.context";
+import { useHistory } from 'react-router-dom';
+import {RemovedUserSession} from '../../utils/Common'
+
 const loginSchema = schema.omit(["confirm_password"]);
 export const Login = () => {
+  const {setIsLoggedIn} = useContext(AppContext);
+  useEffect(()=>{
+    RemovedUserSession()
+    setIsLoggedIn(false);
+  },[])
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -21,29 +31,12 @@ export const Login = () => {
     mutationFn: (body) => login(body),
   });
 
-  // const onSubmit = (data) => console.log(data);
   const onSubmit = handleSubmit((data) => {
     loginMutation.mutate(data, {
       onSuccess: (data) => {
-        // setIsAuthenticated(true);
-        // setProfile(data.data.data.user);
-        // navigate("/");
-        console.log(data);
+        setIsLoggedIn(true);
+        history.push('/');
       },
-      //   onError: (error) => {
-      //     if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
-      //       const formError = error.response?.data.data
-
-      //       if (formError) {
-      //         Object.keys(formError).forEach((key) => {
-      //           setError(key as keyof FormData, {
-      //             message: formError[key as keyof FormData],
-      //             type: 'Server'
-      //           })
-      //         })
-      //       }
-      //     }
-      //   }
     });
   });
 

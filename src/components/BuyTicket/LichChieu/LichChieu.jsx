@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from "react";
-import { AppContext } from "../../../contexts/app.context";
+import  AppContext  from "../../../contexts/app.context";
 
 export default function LichChieu() {
   const { isActive } = useContext(AppContext);
