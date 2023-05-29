@@ -68,7 +68,7 @@ const ChoiceSeat = (props) => {
                 </p>
                 <p className="textticket text-truncate">
                   Suất
-                  <strong className="marginticket-left"></strong>- Hôm nay,
+                  <strong className="marginticket-left">20:30</strong>- Hôm nay,
                   <strong> 22/05 </strong>
                 </p>
                 <p className="textticket text-truncate">
