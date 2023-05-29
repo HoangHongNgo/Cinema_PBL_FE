@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ShowtimesDate from "./../Date/Date";
+import { Link } from "react-router-dom";
 
 export default function LichChieu() {
   const queryParams = new URLSearchParams(window.location.search);
@@ -144,11 +145,16 @@ export default function LichChieu() {
                           new Date(a.start_time) - new Date(b.start_time)
                       )
                       .map((show) => (
-                        <a className="btn-showtime m-1">
-                          <span className="m-auto">
-                            {show?.start_time.substr(11, 5)}
-                          </span>
-                        </a>
+                        <Link to={`/booking/${show.id}`}>
+                          <a
+                            // href={`/booking/${show.id}`}
+                            className="btn-showtime m-1"
+                          >
+                            <span className="m-auto">
+                              {show?.start_time.substr(11, 5)}
+                            </span>
+                          </a>
+                        </Link>
                       ))}
                   </div>
                 </div>

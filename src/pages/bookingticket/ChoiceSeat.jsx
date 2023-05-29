@@ -6,6 +6,7 @@ import ListTicket from "../../context/ListTicket";
 
 const ChoiceSeat = (props) => {
   const seats = props.seats;
+  const show = props.show;
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [groupedSeats, setGroupedSeats] = useState({});
   const [state, setState] = useContext(Ticket);
@@ -54,7 +55,7 @@ const ChoiceSeat = (props) => {
     console.log("calculateTotalAmount = ", selectedSeatsPrice);
     return selectedSeatsPrice.toFixed(3);
   };
-
+  let show_date = new Date(show.start_time);
   return (
     <div className="rowticket ">
       <div className="col-lg-4 col-12 order-sm-last">
@@ -62,18 +63,29 @@ const ChoiceSeat = (props) => {
           <div className="cardticket-body">
             <div className="rowticket">
               <div className="col-ticket">
-                <p className="textticket text-truncate">Fast & Furious 10</p>
                 <p className="textticket text-truncate">
-                  <strong>Starlight Đà Nẵng</strong>
+                  <strong>{show.movie.name}</strong>
+                </p>
+                <p className="textticket text-truncate">
+                  <strong>{show.Cinema_Room.cinema.name}</strong>
                 </p>
                 <p className="textticket text-truncate">
                   Suất
-                  <strong className="marginticket-left"></strong>- Hôm nay,
-                  <strong> 22/05 </strong>
+                  <strong className="marginticket-left">
+                    {show_date.getHours()}:{show_date.getMinutes()}
+                  </strong>
+                  <strong>
+                    {" "}
+                    {show_date.getDate()}-{show_date.getMonth()}-
+                    {show_date.getFullYear()}{" "}
+                  </strong>
                 </p>
                 <p className="textticket text-truncate">
                   Phòng Chiếu
-                  <strong className="marginticket-left"> 01 </strong>
+                  <strong className="marginticket-left">
+                    {" "}
+                    {show.Cinema_Room.name}{" "}
+                  </strong>
                 </p>
               </div>
             </div>

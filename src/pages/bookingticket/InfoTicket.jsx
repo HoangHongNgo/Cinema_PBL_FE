@@ -16,12 +16,12 @@ const InfoTicket = (props) => {
           `https://cinema-00wj.onrender.com/tickets/update/${element.id}/`,
           {
             owner: 1,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
-          //   {
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //   }
         )
         .then((res) => {
           console.log(res);

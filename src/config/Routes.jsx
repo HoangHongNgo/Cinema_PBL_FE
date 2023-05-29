@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import { Login } from "../components/login/login";
 import { Register } from "../components/register/register";
 import Buy_ticket from "../components/BuyTicket/Buy_ticket";
+import Bookingticket from "../pages/bookingticket/Bookingticket";
 
 const Routes = () => {
   return (
@@ -15,6 +16,7 @@ const Routes = () => {
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
       <Route path="/buyticket" component={Buy_ticket} />
+      <Route path="/booking/:id" component={Bookingticket} />
 
       <Route path="/:category/search/:keyword" component={Catalog} />
       <Route path="/detail/:id" exact component={Detail} />

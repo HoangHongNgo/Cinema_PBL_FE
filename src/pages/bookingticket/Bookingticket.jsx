@@ -22,6 +22,7 @@ import Ticket from "../../context/Ticket";
 import "tailwindcss/tailwind.css";
 import ListTicket from "../../context/ListTicket";
 import InfoTicket from "./InfoTicket";
+import { useLocation } from "react-router-dom";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -196,13 +197,28 @@ ColorlibStepIcon.propTypes = {
 const steps = ["Chọn ghế", "Thanh toán", "Thông tin vé"];
 
 const Bookingticket = () => {
+  let id = useLocation();
+  id = id.pathname.split("/").pop();
   const [seats, setSeats] = useState([]);
+  const [show, setShow] = useState({});
 
   useEffect(() => {
+    console.log(id);
     // Lấy dữ liệu từ API bằng Axios
     axios
-      .get("https://cinema-00wj.onrender.com/tickets/show/3/")
+      .get(`https://cinema-00wj.onrender.com/shows/${id}/`)
       .then((response) => {
+        console.log(response);
+        setShow(response.data);
+        // setSeats(response.data);
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy dữ liệu từ API:", error);
+      });
+    axios
+      .get(`https://cinema-00wj.onrender.com/tickets/show/${id}/`)
+      .then((response) => {
+        // console.log(response);
         setSeats(response.data);
       })
       .catch((error) => {
@@ -210,7 +226,7 @@ const Bookingticket = () => {
       });
   }, []);
 
-  const [activeStep, setActiveStep] = useState(null);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -230,20 +246,21 @@ const Bookingticket = () => {
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <ChoiceSeat seats={seats} />;
+        return <ChoiceSeat seats={seats} show={show} />;
       case 1:
         return <Payment />;
       case 2:
         return <InfoTicket />;
       default:
-        return "Unknown Step";
+        return <ChoiceSeat seats={seats} />;
+      // return "Unknown Step";
     }
   }
 
   return (
     <ListTicket.Provider value={[list, setList]}>
       <Ticket.Provider value={[state, setState]}>
-        <div className="mx-44">
+        <div className="mx-44 mt-32">
           <Stack sx={{ width: "100%" }} spacing={4}>
             <Stepper
               alternativeLabel
