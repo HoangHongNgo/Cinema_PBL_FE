@@ -8,15 +8,19 @@ export default function LichChieu() {
   const queryParams = new URLSearchParams(window.location.search);
   const cinemaId = queryParams.get("cinema");
   const date = queryParams.get("date");
+  const movie = queryParams.get("movie");
   const [shows, setShows] = useState([]);
   const [cinema, setCinema] = useState({});
   console.log("cinema_id : ", cinemaId);
   console.log("date : ", date);
+  console.log("movie : ", movie);
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
       .get(
-        `https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}&date=${date}`
+        `https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}&date=${date}&movie=${
+          movie ? movie : null
+        }`
       )
       .then((response) => {
         setShows(response.data);
