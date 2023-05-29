@@ -9,7 +9,7 @@
   // max-width: 700px;
   // max-height: 600px;
   grid-template-columns: 2fr 2fr 4fr;
-  gap: 4rem;
+  gap: 2rem;
   //new
   display: grid;
   // grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -65,7 +65,7 @@
       margin-bottom: 1rem;
       color: #283e59;
       width: 100%;
-      justify-content: space-between;
+      justify-content: space-around;
       .showtimes_date {
         padding: 1.12rem;
 
@@ -160,35 +160,15 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.btn, .btn-sm {
-  padding: .125rem .5rem;
   font-size: .8125rem;
-  line-height: 1.75;
   border-radius: .25rem;
-}
-
-.btn-outline-dark {
   color: #12263f;
   border-color: #12263f;
+  border: 1px solid
 }
 
-.btn_show {
-  display: inline-block;
-  font-weight: 400;
-  color: #12263f;
-  text-align: center;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: .5rem .75rem;
-  font-size: .9375rem;
-  line-height: 1.5;
-  border-radius: .375rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+.btn-showtime:hover {
+  color: #fff;
+  background-color: #12263f;
+  border-color: #12263f;
 }

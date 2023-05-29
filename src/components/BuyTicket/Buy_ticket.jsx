@@ -8,7 +8,6 @@ import Cinema from "./Cinema/Cinema";
 import LichChieu from "./LichChieu/LichChieu";
 import { AppProvider } from "../../contexts/app.context";
 import { useState, createContext } from "react";
-import CinemaContext from "../../context/CInema"
 
 
 export default function Buy_ticket() {
@@ -16,7 +15,7 @@ export default function Buy_ticket() {
 
 
   return (
-    <CinemaContext.Provider value={[state, setState]}>
+
     <div className="container buyticket">
       <AppProvider>
         <City />
@@ -24,6 +23,6 @@ export default function Buy_ticket() {
         <LichChieu />
       </AppProvider>
     </div>
-    </CinemaContext.Provider>
+   
   );
 }
