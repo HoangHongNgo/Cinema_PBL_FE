@@ -20,6 +20,9 @@ import Payment from "./Payment";
 import axios from "axios";
 import Ticket from "../../context/Ticket";
 import "tailwindcss/tailwind.css";
+import ListTicket from "../../context/ListTicket";
+import InfoTicket from "./InfoTicket";
+import { useLocation } from "react-router-dom";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -194,13 +197,28 @@ ColorlibStepIcon.propTypes = {
 const steps = ["Chọn ghế", "Thanh toán", "Thông tin vé"];
 
 const Bookingticket = () => {
+  let id = useLocation();
+  id = id.pathname.split("/").pop();
   const [seats, setSeats] = useState([]);
+  const [show, setShow] = useState({});
 
   useEffect(() => {
+    console.log(id);
     // Lấy dữ liệu từ API bằng Axios
     axios
-      .get("https://cinema-00wj.onrender.com/tickets/show/3/")
+      .get(`https://cinema-00wj.onrender.com/shows/${id}/`)
       .then((response) => {
+        console.log(response);
+        setShow(response.data);
+        // setSeats(response.data);
+      })
+      .catch((error) => {
+        console.error("Lỗi khi lấy dữ liệu từ API:", error);
+      });
+    axios
+      .get(`https://cinema-00wj.onrender.com/tickets/show/${id}/`)
+      .then((response) => {
+        // console.log(response);
         setSeats(response.data);
       })
       .catch((error) => {
@@ -208,7 +226,7 @@ const Bookingticket = () => {
       });
   }, []);
 
-  const [activeStep, setActiveStep] = useState(null);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -223,77 +241,81 @@ const Bookingticket = () => {
   };
 
   const [state, setState] = useState({});
+  const [list, setList] = useState([]);
 
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <ChoiceSeat seats={seats} />;
+        return <ChoiceSeat seats={seats} show={show} />;
       case 1:
         return <Payment />;
       case 2:
-        return "Step Three (Thong tin ve)";
+        return <InfoTicket />;
       default:
-        return "Unknown Step";
+        return <ChoiceSeat seats={seats} />;
+      // return "Unknown Step";
     }
   }
 
   return (
-    <Ticket.Provider value={[state, setState]}>
-      <div className="mx-44">
-        <Stack sx={{ width: "100%" }} spacing={4}>
-          <Stepper
-            alternativeLabel
-            activeStep={activeStep}
-            connector={<ColorlibConnector />}
-          >
-            {steps.map((label) => (
-              <Step key={label}>
-                <ColorlibStepLabel StepIconComponent={ColorlibStepIcon}>
-                  {label}
-                </ColorlibStepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Stack sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Stack sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleReset}>Reset</Button>
-              </Stack>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                {getStepContent(activeStep)}
-              </Typography>
-              <Stack sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Button
-                  color="inherit"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={{ mr: 1 }}
-                >
-                  Back
-                </Button>
-                <Stack sx={{ flex: "1 1 auto" }} />
-                {/* {isStepOptional(activeStep) && (
+    <ListTicket.Provider value={[list, setList]}>
+      <Ticket.Provider value={[state, setState]}>
+        <div className="mx-44 mt-32">
+          <Stack sx={{ width: "100%" }} spacing={4}>
+            <Stepper
+              alternativeLabel
+              activeStep={activeStep}
+              connector={<ColorlibConnector />}
+            >
+              {steps.map((label) => (
+                <Step key={label}>
+                  <ColorlibStepLabel StepIconComponent={ColorlibStepIcon}>
+                    {label}
+                  </ColorlibStepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography sx={{ mt: 2, mb: 1 }}>
+                  All steps completed - you&apos;re finished
+                </Typography>
+                <Stack sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                  <Stack sx={{ flex: "1 1 auto" }} />
+                  <Button onClick={handleReset}>Reset</Button>
+                </Stack>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Typography sx={{ mt: 2, mb: 1 }}>
+                  {getStepContent(activeStep)}
+                </Typography>
+                <Stack sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                  <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    Back
+                  </Button>
+                  <Stack sx={{ flex: "1 1 auto" }} />
+                  {/* {isStepOptional(activeStep) && (
               <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                 Skip
               </Button>
             )} */}
 
-                <Button onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
-              </Stack>
-            </React.Fragment>
-          )}
-        </Stack>
-      </div>
-    </Ticket.Provider>
+                  <Button onClick={handleNext}>
+                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  </Button>
+                </Stack>
+              </React.Fragment>
+            )}
+          </Stack>
+        </div>
+      </Ticket.Provider>
+    </ListTicket.Provider>
   );
 };
 

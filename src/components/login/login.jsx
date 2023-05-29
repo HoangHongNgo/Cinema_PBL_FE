@@ -8,17 +8,18 @@ import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
 import { login } from "../../api/auth.api";
-import  AppContext  from "../../contexts/app.context";
-import { useHistory } from 'react-router-dom';
-import {RemovedUserSession} from '../../utils/Common'
+import AppContext from "../../contexts/app.context";
+import { useHistory } from "react-router-dom";
+import { RemovedUserSession } from "../../utils/Common";
 
 const loginSchema = schema.omit(["confirm_password"]);
+
 export const Login = () => {
-  const {setIsLoggedIn} = useContext(AppContext);
-  useEffect(()=>{
-    RemovedUserSession()
+  const { setIsLoggedIn } = useContext(AppContext);
+  useEffect(() => {
+    RemovedUserSession();
     setIsLoggedIn(false);
-  },[])
+  }, []);
   const history = useHistory();
   const {
     register,
@@ -34,8 +35,9 @@ export const Login = () => {
   const onSubmit = handleSubmit((data) => {
     loginMutation.mutate(data, {
       onSuccess: (data) => {
+        console.log(data);
         setIsLoggedIn(true);
-        history.push('/');
+        history.push("/");
       },
     });
   });

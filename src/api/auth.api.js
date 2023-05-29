@@ -15,10 +15,10 @@ export const login = (body) => {
 };
 
 export const registerUser = (body) => {
+  
   axiosClient.post("/user/register/", body)
   .then((response) => {
     console.log(response.token);
-
   })
   .catch((err) => {
     console.log(err);
