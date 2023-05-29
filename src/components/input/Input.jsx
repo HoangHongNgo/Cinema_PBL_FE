@@ -20,9 +20,9 @@ const Input = ({
         placeholder={placeholder}
         name={name}
         {...register(name, rules)}
-        autoComplete={autoComplete}
+        // autoComplete={autoComplete}
       />
-      <div className="errorMessage">{errorMessage}</div>
+      {/* <div className="errorMessage">{errorMessage}</div> */}
       {/* <div className="errorMessage">Error</div> */}
     </div>
   );

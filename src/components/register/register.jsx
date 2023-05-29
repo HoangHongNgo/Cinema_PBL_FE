@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
-import { login } from "../../api/auth.api";
+import { registerUser } from "../../api/auth.api";
 
 const loginSchema = schema.omit(["confirm_password"]);
 export const Register = () => {
@@ -18,7 +18,7 @@ export const Register = () => {
   } = useForm({ resolver: yupResolver(loginSchema) });
 
   const loginMutation = useMutation({
-    mutationFn: (body) => login(body),
+    mutationFn: (body) => registerUser(body),
   });
 
   // const onSubmit = (data) => console.log(data);
@@ -71,7 +71,7 @@ export const Register = () => {
             </div>
             <div className="button_form">
               <button className="btn_form" type="submit">
-                Đăng Nhập
+                Đăng Ky
               </button>
             </div>
             <div className="forgotPassword_form">
