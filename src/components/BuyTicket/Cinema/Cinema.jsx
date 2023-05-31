@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState,useLocation} from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
@@ -9,6 +9,9 @@ export default function Cinema() {
   const [cinemas, setCinemas] = useState([]);
   const queryParams = new URLSearchParams(window.location.search);
   const cityId = queryParams.get("city");
+  const cinemaId = queryParams.get("cinema");
+
+ 
   console.log("city ID", cityId);
   useEffect(() => {
   // Lấy dữ liệu từ API bằng Axios
@@ -42,7 +45,7 @@ export default function Cinema() {
           </li>
           {cinema_brand.cinemas.map((cinema) =>(
             <li className="list-group-item ">
-              <Link to={`/buyticket/?city=${cityId}&cinema=${cinema.id}`} className="list-group-item item" data-cinema={118366}>
+              <Link to={`/buyticket/?city=${cityId}&cinema=${cinema.id}`} className={`list-group-item item ${cinema.id==cinemaId ? "focus" : ""} `} data-cinema={118366}>
                 {cinema.name}
               </Link>
             </li>
