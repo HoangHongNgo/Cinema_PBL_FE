@@ -56,6 +56,7 @@ const ChoiceSeat = (props) => {
     return selectedSeatsPrice.toFixed(3);
   };
   let show_date = new Date(show.start_time);
+  console.log("Object.entries : ", Object.entries(groupedSeats));
   return (
     <div className="rowticket ">
       <div className="col-lg-4 col-12 mt-20 order-sm-last justify-center flex flex-col space-y-4">
@@ -155,22 +156,33 @@ const ChoiceSeat = (props) => {
                     <div className=" seats seats-map">
                       {Object.entries(groupedSeats).map(
                         ([seatRow, seatsInRow]) => (
-                          <div key={seatRow}>
-                            {seatsInRow.map((seat) => (
-                              <div className="row-wrapper">
-                                <ul
-                                  key={seat.id}
-                                  className={`seat-row ${
-                                    selectedSeats.includes(seat) ? "choice" : ""
-                                  }`}
-                                  onClick={() => handleSeatClick(seat)}
-                                >
-                                  <li className="textticket">
-                                    {seat.seat_num}
-                                  </li>
-                                </ul>
-                              </div>
-                            ))}
+                          <div key={seatRow} className="">
+                            {seatsInRow
+                              .sort((a, b) => a.seat_num - b.seat_num)
+                              .map((seat) => (
+                                <div className="row-wrapper bg-white">
+                                  <ul
+                                    key={seat.id}
+                                    className={`seat-row  ${
+                                      selectedSeats.includes(seat)
+                                        ? "choice"
+                                        : ""
+                                    }`}
+                                    onClick={() => {
+                                      if (seat.owner == null)
+                                        return handleSeatClick(seat);
+                                    }}
+                                  >
+                                    <li
+                                      className={`textticket ${
+                                        seat.owner == null ? "" : "taken"
+                                      }`}
+                                    >
+                                      {seat.seat_num}
+                                    </li>
+                                  </ul>
+                                </div>
+                              ))}
                           </div>
                         )
                       )}

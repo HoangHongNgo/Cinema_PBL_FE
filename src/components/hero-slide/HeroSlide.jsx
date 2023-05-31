@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import SwiperCore, { Autoplay, FreeMode, Thumbs, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import Button, { OutlineButton } from "../button/button";
+import Button, { OutlineButton } from "../button/Button";
 import Modal, { ModalContent } from "../modal/modal";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi from "../../api/tmdbApi";
