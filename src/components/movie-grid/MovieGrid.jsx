@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router';
 import './movie-grid.scss';
 
 import MovieCard from '../movie-card/MovieCard';
-import Button from '../button/button';
+
 import Input from '../input/Input'
 
 import axios from 'axios';
