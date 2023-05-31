@@ -39,8 +39,20 @@ button {
   background-color: $white;
 }
 
+.btn.large {
+  border-width: 2.5px;
+  padding: 0.3rem 1.75rem;
+  font-size: 1.25rem;
+}
+
 .btn.small {
   border-width: 2px;
   padding: 0.25rem 1.5rem;
   font-size: 1rem;
+}
+
+.btn.extrasmall {
+  border-width: 1.75px;
+  padding: 0.2rem 1.25rem;
+  font-size: 0.8rem;
 }
