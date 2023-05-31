@@ -55,7 +55,7 @@ const MovieGrid = (props) => {
 
   return (
     <>
-      <div className="section mb-3">
+      <div className="section mb-8">
         <MovieSearch status={props.status} keyword={keyword} />
       </div>
       <div className="movie-grid">
@@ -95,12 +95,12 @@ const MovieSearch = (props) => {
     <div className="movie-search">
       <Input
         type="text"
-        placeholder="Enter keyword"
+        placeholder="Nhập từ khóa"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
       <Button className="small" onClick={goToSearch}>
-        Search
+        Tìm kiếm
       </Button>
     </div>
   );
