@@ -162,10 +162,14 @@ const HeroSlideItem = (props) => {
             <Button
               onClick={() => {
                 history.push(
-                  "/buyticket/?city=3&cinema=1&date=2023-05-30&movie=" + item.id
+                  `/buyticket/?city=3&cinema=1&date=${
+                    new Date().toISOString().split("T")[0]
+                  }&movie=${item.id}`
                 );
                 console.log(
-                  "/buyticket/?city=3&cinema=1&date=2023-05-30&movie=" + item.id
+                  `/buyticket/?city=3&cinema=1&date=${
+                    new Date().toISOString().split("T")[0]
+                  }&movie=${item.id}`
                 );
               }}
             >

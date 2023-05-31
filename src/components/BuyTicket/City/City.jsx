@@ -5,6 +5,8 @@ import axios from "axios";
 
 export default function City() {
   const [cityList, setCityList] = useState([]);
+  const queryParams = new URLSearchParams(window.location.search);
+  const cityId = queryParams.get("city");
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios

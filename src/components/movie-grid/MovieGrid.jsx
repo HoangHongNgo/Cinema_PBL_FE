@@ -15,12 +15,14 @@ const MovieGrid = (props) => {
   const { keyword } = useParams();
 
   useEffect(() => {
+    console.log("status : ", props.status);
     axios
       .get(`https://cinema-00wj.onrender.com/movies/`)
       .then((response) => {
         setItems(
           response.data.filter((movie) => {
-            return movie.status == props.status;
+            if (props.status != 3) return movie.status == props.status;
+            else return true;
           })
         );
         console.log(
@@ -38,19 +40,23 @@ const MovieGrid = (props) => {
   }, [props.status]);
 
   useEffect(() => {
-    axios
-      .get(`https://cinema-00wj.onrender.com/movies/search/`, {
-        params: {
-          search: keyword,
-        },
-      })
-      .then((response) => {
-        setItems(response.data);
-        console.log("Movie List : ", response.data, "status", props.status);
-      })
-      .catch((error) => {
-        console.error("Lỗi khi lấy dữ liệu từ API:", error);
-      });
+    if (keyword) {
+      let keywords = keyword.split("+");
+      console.log("keywords[1] : ", keywords[1]);
+      axios
+        .get(
+          `https://cinema-00wj.onrender.com/movies/search${
+            keywords[0] == "rdf" ? "_rdf" : ""
+          }/?search=${keywords[1].replace(" ", "&")}`
+        )
+        .then((response) => {
+          setItems(response.data);
+          console.log("Movie List : ", response, "status", props.status);
+        })
+        .catch((error) => {
+          console.error("Lỗi khi lấy dữ liệu từ API:", error);
+        });
+    }
   }, [keyword]);
 
   return (
@@ -71,12 +77,25 @@ const MovieSearch = (props) => {
   const history = useHistory();
 
   const [keyword, setKeyword] = useState(props.keyword ? props.keyword : "");
+  const [isRDF, setIsRDF] = useState(false);
+
+  const goToSearchNor = async () => {
+    await setIsRDF(false);
+    goToSearch();
+  };
+
+  const goToSearchRdf = async () => {
+    await setIsRDF(true);
+    goToSearch();
+  };
 
   const goToSearch = useCallback(() => {
     if (keyword.trim().length > 0) {
-      history.push(`/${props.status}/search/${keyword}`);
+      history.push(
+        `/${props.status}/search/${isRDF ? "rdf" : "nor"}+${keyword}`
+      );
     }
-  }, [keyword, props.status, history]);
+  }, [keyword, props.status, history, isRDF]);
 
   useEffect(() => {
     const enterEvent = (e) => {
@@ -89,19 +108,28 @@ const MovieSearch = (props) => {
     return () => {
       document.removeEventListener("keyup", enterEvent);
     };
-  }, [keyword, goToSearch]);
+  }, [keyword, goToSearch, isRDF]);
 
   return (
     <div className="movie-search">
-      <Input
-        type="text"
-        placeholder="Nhập từ khóa"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      <Button className="small" onClick={goToSearch}>
-        Tìm kiếm
-      </Button>
+      <div className="inline">
+        <Input
+          type="text"
+          placeholder="Nhập từ khóa"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+      </div>
+      <div className="inline mx-4">
+        <Button className="small" onClick={goToSearchNor}>
+          Tìm kiếm
+        </Button>
+      </div>
+      <div className="inline">
+        <Button className="small" onClick={goToSearchRdf}>
+          Tìm kiếm RDF
+        </Button>
+      </div>
     </div>
   );
 };

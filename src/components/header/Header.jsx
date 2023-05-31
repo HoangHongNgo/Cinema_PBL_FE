@@ -6,11 +6,8 @@ import { Link } from "react-router-dom";
 
 import "./header.scss";
 
-
-
-
 const Header = () => {
-  const {isLoggedIn, setIsLoggedIn} = useContext(AppContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
   // const { pathname } = useLocation();
   const headerRef = useRef(null);
   // const active = headerNav.findIndex(e=>e.path === pathname);
@@ -57,7 +54,7 @@ const Header = () => {
 
           <li className="dropdown">
             <Link
-              to="/"
+              to="/3"
               className="dropdown-toggle"
               data-toggle="dropdown"
               role="button"
@@ -108,22 +105,23 @@ const Header = () => {
             </ul>
           </li>
         </ul>
-                    {!isLoggedIn ? (<ul className="header__user">
-          
-          <li className="dropdown__user">
-            <Link to="/login">Đăng nhập</Link>
-          </li>
-          <span>/</span>
-          <li>
-            <Link to="/register">Đăng ký</Link>
-          </li>
-        </ul>):(<ul className="header__user">
-          
-          <li className="dropdown__user">
-            <Link to="/login">Đăng xuất</Link>
-          </li>
-        </ul>)}
-        
+        {!isLoggedIn ? (
+          <ul className="header__user">
+            <li className="dropdown__user">
+              <Link to="/login">Đăng nhập</Link>
+            </li>
+            <span>/</span>
+            <li>
+              <Link to="/register">Đăng ký</Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="header__user">
+            <li className="dropdown__user">
+              <Link to="/login">Đăng xuất</Link>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );
