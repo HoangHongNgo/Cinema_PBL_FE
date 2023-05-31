@@ -55,7 +55,6 @@ i{
 }
 
 .fe{
-    font-family: Feather;
     speak: none;
     font-style: normal;
     font-weight: 400;
@@ -87,10 +86,10 @@ i{
 
 .cardticket{
 
-    margin-bottom: 1.5rem;
     border-color: #edf2f9;
     box-shadow:0 0.75rem 1.5rem rgba(18,38,63,.03);
-
+    margin-top: 10px;
+    margin-bottom: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -100,10 +99,10 @@ i{
     background-clip: border-box;
     border: 1px solid #edf2f9;
     border-radius: 0.5rem;
+    opacity: 0.9;
 
 
     &.cardticket-sm{
-        padding: 1rem;
         min-height: auto;
     }
 
@@ -119,7 +118,7 @@ i{
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     margin-bottom: 0;
     background-color: transparent;
     border-bottom: 1px solid #edf2f9;
@@ -133,7 +132,7 @@ i{
 
 .textticket{
     color: black !important;
-    
+    text-align: left;
 }
 
 .text-truncate{
@@ -142,14 +141,6 @@ i{
     white-space: nowrap;
 }
 
-p{
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-block-end: 0px;
-    
-}
 .marginticket-left{
     margin-left: 5px;
 }
@@ -168,9 +159,6 @@ h6{
     font-weight: 600;
     line-height: 1.5;
 
-    margin-block-start: 2.33em;
-    margin-block-end: 2.33em;
-
 }
 
 .text-uppercase{
@@ -181,12 +169,6 @@ h6.text-uppercase {
     letter-spacing: .08em;
 }
 
-.h2{
-    margin-bottom: 1.125rem;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 0;
-}
 
 .text-right{
     text-align: right;
@@ -228,6 +210,7 @@ h6.text-uppercase {
     }
     &-selection .legend div span{
         background-color: #dfdfdf;
+        opacity: 0.8;
         position: relative;
         border-radius: 2px;
     }
@@ -246,11 +229,13 @@ h6.text-uppercase {
 
     &-selection .legend div span.seat-area-3{
         background-color: #3b5998;
+        opacity: 0.8;
     }
     &-selection .legend div span.selected{
-        background-color: #00b300;
+        background-color: red;
         color: #fff;
-        box-shadow: 0 0 11px #00b300 ;
+        opacity: 0.8;
+        box-shadow: 0 0 11px red;
     }
 
     &-selection .legend div span.unavailable{
@@ -312,6 +297,7 @@ h6.text-uppercase {
         width: 25px;
         height: 25px;
         background: #dfdfdf;
+        opacity: 0.9;
         margin: 3px;
         cursor: pointer;
         position: relative;
@@ -330,6 +316,7 @@ h6.text-uppercase {
         margin-right: 30px;
         text-align: center;
         color: #fff;
+        opacity: 0.8;
         font-weight: 700;
         width: 30px;
     }
@@ -496,9 +483,9 @@ input[type=checkbox], input[type=radio] {
 }
 
 .choice{
-    background-color: #00b300;
+    background-color: red;
     color: #fff;
-    box-shadow: 0 0 11px #00b300 
+    box-shadow: 0 0 11px red
      
 }
 

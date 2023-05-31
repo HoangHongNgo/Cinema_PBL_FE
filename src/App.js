@@ -23,7 +23,7 @@ function App() {
             <Header {...props} />
             <Routes />
             
-            <Bookingticket></Bookingticket>
+            {/* <Bookingticket></Bookingticket> */}
             <Footer />
           </>
         )}

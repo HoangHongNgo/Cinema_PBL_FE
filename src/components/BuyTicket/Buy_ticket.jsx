@@ -7,15 +7,22 @@ import City from "./City/City";
 import Cinema from "./Cinema/Cinema";
 import LichChieu from "./LichChieu/LichChieu";
 import { AppProvider } from "../../contexts/app.context";
+import { useState, createContext } from "react";
+
 
 export default function Buy_ticket() {
+  const [state, setState] = useState({})
+
+
   return (
-    <div className="buyticket">
+
+    <div className="container buyticket">
       <AppProvider>
         <City />
         <Cinema />
         <LichChieu />
       </AppProvider>
     </div>
+   
   );
 }

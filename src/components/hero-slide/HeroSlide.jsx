@@ -159,10 +159,21 @@ const HeroSlideItem = (props) => {
           {/* <div className="overview">{item.overview}</div> */}
           <div className="overview">{first20Words.join(" ")} ...</div>
           <div className="btns">
-            <Button onClick={() => history.push("/detail/1")}>
+            <OutlineButton
+              onClick={() => {
+                history.push(
+                  "/buyticket/?city=3&cinema=1&date=2023-05-30&movie=" + item.id
+                );
+                console.log(
+                  "/buyticket/?city=3&cinema=1&date=2023-05-30&movie=" + item.id
+                );
+              }}
+            >
               Đặt vé
-            </Button>
-            <OutlineButton onClick={() => history.push("/detail/" + item.id)}>Chi tiết</OutlineButton>
+            </OutlineButton>
+            <OutlineButton onClick={() => history.push("/detail/" + item.id)}>
+              Chi tiết
+            </OutlineButton>
           </div>
         </div>
         <div className="hero-slide__item__content__poster">
