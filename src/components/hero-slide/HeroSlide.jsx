@@ -169,10 +169,10 @@ const HeroSlideItem = (props) => {
                 );
               }}
             >
-              Get tickets
+              Mua vé
             </Button>
             <OutlineButton onClick={() => history.push("/detail/" + item.id)}>
-              Detail
+              Chi tiết
             </OutlineButton>
           </div>
         </div>

@@ -116,7 +116,7 @@ const Detail = () => {
               }}
               className="large"
             >
-              Get a ticket !
+              Mua vé ngay !
             </Button>
           </div>
           <div className="container my-3">
@@ -131,7 +131,7 @@ const Detail = () => {
             <div className="m-4">
               <div className="">
                 <div className="container mx-auto text-center text-2xl w-fit border-b-2 border-b-red-600 p-6 hover:bg-red-600 hover:border-b-white">
-                  <p className="font-extrabold">Reviews</p>
+                  <p className="font-extrabold">Đánh giá phim</p>
                 </div>
               </div>
               <div className="my-8 w-2/3 mx-auto">
@@ -149,11 +149,11 @@ const Detail = () => {
                     placeholder="Email"
                   ></input>
                   <div className="inline m-2">
-                    <Button className="small">Send</Button>
+                    <Button className="small">Gửi</Button>
                   </div>
                 </div>
                 <div className="my-6">
-                  <div className="my-2 w-full border-b-2 border-red-600">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
                     <div className="font-bold">Ng. H. Hoang</div>
                   </div>
                   <div className="my-2">
@@ -188,7 +188,7 @@ const Detail = () => {
                   </div>
                 </div>
                 <div className="my-6">
-                  <div className="my-2 w-full border-b-2 border-red-600">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
                     <div className="font-bold">H. Ph. Le</div>
                   </div>
                   <div className="my-2">
@@ -219,7 +219,7 @@ const Detail = () => {
                   </div>
                 </div>
                 <div className="my-6">
-                  <div className="my-2 w-full border-b-2 border-red-600">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
                     <div className="font-bold">L. V. H. Duc</div>
                   </div>
                   <div className="my-2">
@@ -246,7 +246,7 @@ const Detail = () => {
                   </div>
                 </div>
                 <div className="my-6">
-                  <div className="my-2 w-full border-b-2 border-red-600">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
                     <div className="font-bold">Ng. Th. Liem</div>
                   </div>
                   <div className="my-2">
@@ -280,7 +280,7 @@ const Detail = () => {
                   </div>
                 </div>
                 <div className="w-full flex justify-center mt-2">
-                  <OutlineButton className="small">Load More</OutlineButton>
+                  <OutlineButton className="small">Xem thêm</OutlineButton>
                 </div>
               </div>
             </div>
