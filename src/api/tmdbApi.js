@@ -3,7 +3,7 @@ import apiConfig from "./apiConfig";
 import apiUrl from "./apiUrl";
 
 export const category = {
-  movie: "https://cinema-00wj.onrender.com/movies",
+  movie: "https://cinema-00wj.onrender.com/movies/",
   // tv: "tv",
 };
 
