@@ -191,6 +191,13 @@ h6.text-uppercase {
     padding-left: 12px
 }
 
+.taken{
+    background: repeating-linear-gradient(
+            45deg,hsla(0,0%,60%,.9),hsla(0,0%,60%,.9) 10px,hsla(0,0%,60%) 0,hsla(0,0%,60%) 20px
+        ) !important; 
+    opacity: 1 !important;
+}
+
 .seat{
     &-selection{
         margin: 20px 0;
@@ -246,8 +253,9 @@ h6.text-uppercase {
     &-selection .legend div span.taken{
         background: repeating-linear-gradient(
             45deg,hsla(0,0%,60%,.4),hsla(0,0%,60%,.4) 10px,hsla(0,0%,60%,.6) 0,hsla(0,0%,60%,.6) 20px
-        );
+        ) !important; 
     }
+
 
     &-selection .front{
         display: block;

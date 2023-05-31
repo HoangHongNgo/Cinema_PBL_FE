@@ -18,6 +18,7 @@ const InfoTicket = (props) => {
           `https://cinema-00wj.onrender.com/tickets/update/${element.id}/`,
           {
             owner: 1,
+            sale_date: new Date().toISOString(),
           },
           {
             headers: {
@@ -26,16 +27,15 @@ const InfoTicket = (props) => {
           }
         )
         .then((res) => {
-          setTickets((prev) => {
-            return [...prev, res.data];
-          });
+          setTickets((prevTickets) => [...prevTickets, res.data]);
+          console.log("res purchased ticket : ", res.data);
         })
         .catch((err) => {
           console.log(err);
         });
     });
-    console.log(tickets);
   }, []);
+  console.log("tickets : ", tickets);
   return (
     <div className="w-3/4 mx-auto">
       <div>
@@ -76,7 +76,36 @@ const InfoTicket = (props) => {
             <tbody>
               <tr>
                 <td>Tên phim</td>
-                <td className="text-right">{}</td>
+                <td className="text-right">
+                  {tickets[0]?.showtime.movie.name}
+                </td>
+              </tr>
+              <tr>
+                <td>Rạp phim</td>
+                <td className="text-right">
+                  {tickets[0]?.showtime.Cinema_Room.cinema.name}
+                </td>
+              </tr>
+              <tr>
+                <td>Phòng chiếu</td>
+                <td className="text-right">
+                  {tickets[0]?.showtime.Cinema_Room.id}
+                </td>
+              </tr>
+              <tr>
+                <td>Suất chiếu</td>
+                <td className="text-right">
+                  {new Date(tickets[0]?.showtime.start_time).toLocaleString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>Mã ghế</td>
