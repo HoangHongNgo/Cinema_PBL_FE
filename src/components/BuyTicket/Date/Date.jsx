@@ -8,6 +8,8 @@ const ShowtimesDate = () => {
   const history = useHistory();
 
   const [newUrl, setNewUrl] = useState("");
+  const queryParams = new URLSearchParams(window.location.search);
+  const dateId = queryParams.get("date");
 
   const handleClick = (dataDate) => {
     const currentSearchParams = new URLSearchParams(location.search);

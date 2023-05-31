@@ -5,6 +5,8 @@ import axios from 'axios';
 
 export default function City() {
   const [cityList, setCityList] = useState([])
+  const queryParams = new URLSearchParams(window.location.search);
+  const cityId = queryParams.get("city");
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios.get(`https://cinema-00wj.onrender.com/cinemas/cities/`)
@@ -25,7 +27,7 @@ export default function City() {
         <li className="list-group-item  list-group-region">Khu vực</li>
         {cityList?.map((city) => (
           <li className="list-group-item  d-flex justify-content-between align-items-center btn-choose-region">
-            <Link to={`/buyticket/?city=${city.id}`} className="item">
+            <Link to={`/buyticket/?city=${city.id}`} className={`item ${city.id ==cityId ? "focus" : "" }`}> 
               {city.name}
             </Link>
           </li>
