@@ -17,8 +17,8 @@ const Header = () => {
     setIsLoggedIn(GetToken() ? true : false);
     const shrinkHeader = () => {
       if (
-        document.body.scrollTop > 100 ||
-        document.documentElement.scrollTop > 100
+        document.body.scrollTop > 90 ||
+        document.documentElement.scrollTop > 90
       ) {
         headerRef.current.classList.add("shrink");
       } else {
