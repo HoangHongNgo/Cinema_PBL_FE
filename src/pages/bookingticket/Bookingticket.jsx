@@ -22,7 +22,8 @@ import Ticket from "../../context/Ticket";
 import "tailwindcss/tailwind.css";
 import ListTicket from "../../context/ListTicket";
 import InfoTicket from "./InfoTicket";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation,useHistory } from "react-router-dom";
+
 
 
 
@@ -220,6 +221,7 @@ const Bookingticket = () => {
   const [seats, setSeats] = useState([]);
   const [show, setShow] = useState({});
   console.log("seats, shows : ", seats, show);
+  let history=useHistory();
 
   useEffect(() => {
     console.log("GET API");
@@ -249,7 +251,12 @@ const Bookingticket = () => {
   const [activeStep, setActiveStep] = useState(null);
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (activeStep === steps.length - 1){
+      history.push("/");
+          } else {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+   
   };
 
   const handleBack = () => {
@@ -296,15 +303,9 @@ const Bookingticket = () => {
               ))}
             </Stepper>
             {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  All steps completed - you&apos;re finished
-                </Typography>
-                <Stack sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                  <Stack sx={{ flex: "1 1 auto" }} />
-                  <Button onClick={handleReset}>Reset</Button>
-                </Stack>
-              </React.Fragment>
+             
+                  <Link to="/"></Link>
+               
             ) : (
               <React.Fragment>
                 <Typography sx={{ mt: 2, mb: 1 }}>
@@ -314,7 +315,7 @@ const Bookingticket = () => {
                   <Button
                     color="error"
                     variant="contained"
-                    disabled={activeStep === 0}
+                    disabled={activeStep === 0 || activeStep ===2}
                     onClick={handleBack}
                     sx={{ mr: 1 }}
                   >

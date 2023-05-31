@@ -62,10 +62,10 @@ const InfoTicket = (props) => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4 mt-9">
-        <div className="bg-white rounded-xl opacity-80">
+        <div className="bg-white rounded-xl ">
           <QRCode className="w-2/3 h-full m-auto" value="21314354354"></QRCode>
         </div>
-        <div className="col-span-2 bg-white rounded-xl opacity-80">
+        <div className="col-span-2 bg-white rounded-xl ">
           <table className="table rounded-xl overflow-hidden">
             <thead>
               <tr>

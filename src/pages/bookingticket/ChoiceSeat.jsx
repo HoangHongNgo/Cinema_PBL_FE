@@ -60,7 +60,7 @@ const ChoiceSeat = (props) => {
   return (
     <div className="rowticket ">
       <div className="col-lg-4 col-12 mt-20 order-sm-last justify-center flex flex-col space-y-4">
-        <div className="cardticket cardticket-sm">
+        <div className="cardticket cardticket-sm hover:scale-110 transition-transform duration-300">
           <div className="cardticket-body">
             <div className="rowticket">
               <div className="col-ticket my-2">
@@ -92,11 +92,11 @@ const ChoiceSeat = (props) => {
             </div>
           </div>
         </div>
-        <div className="cardticket sticky-header-bars">
+        <div className="cardticket sticky-header-bars hover:scale-110 transition-transform duration-300">
           <div className="cardticket-body">
             <div className="rowticket align-items-center ">
               <div className="col-ticket my-4">
-                <p className="textticket text-uppercase my-2">
+                <p className="textticket text-uppercase my-2"> 
                   <strong>Tổng đơn hàng</strong>
                 </p>
                 <span className="h2 mb-0 textticket my-2">
@@ -163,20 +163,20 @@ const ChoiceSeat = (props) => {
                                 <div className="row-wrapper bg-white">
                                   <ul
                                     key={seat.id}
-                                    className={`seat-row  ${
+                                    className={`seat-row ${
                                       selectedSeats.includes(seat)
                                         ? "choice"
                                         : ""
-                                    }`}
+                                    } ${seat.owner === null ? "hover:bg-red-500" : ""}`}
                                     onClick={() => {
                                       if (seat.owner == null)
                                         return handleSeatClick(seat);
                                     }}
                                   >
                                     <li
-                                      className={`textticket ${
+                                      className={`textticket  ${
                                         seat.owner == null ? "" : "taken"
-                                      }`}
+                                      } `}
                                     >
                                       {seat.seat_num}
                                     </li>
