@@ -44,7 +44,7 @@ const Payment = (props) => {
     <div className="">
       <div className="rowticket">
         <div className="col-lg-4 col-12 order-sm-last">
-          <div className="cardticket sticky-header-bars">
+          <div className="cardticket sticky-header-bars hover:scale-110 transition-transform duration-300">
             <div className="cardticket-body">
               <div className="rowticket align-items-center">
                 <div className="col-ticket my-4">
@@ -58,7 +58,7 @@ const Payment = (props) => {
               </div>
             </div>
           </div>
-          <div className="cardticket d-lg-bloc">
+          <div className="cardticket d-lg-bloc hover:scale-110 transition-transform duration-300">
             <div className="cardticket-body textticket m-6">
               Vé đã mua không thể đổi hoặc hoàn tiền.
               <br></br>
