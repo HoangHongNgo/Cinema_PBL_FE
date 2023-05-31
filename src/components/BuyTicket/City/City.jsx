@@ -5,8 +5,6 @@ import axios from "axios";
 
 export default function City() {
   const [cityList, setCityList] = useState([]);
-  const queryParams = new URLSearchParams(window.location.search);
-  const cityId = queryParams.get("city");
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
@@ -30,7 +28,7 @@ export default function City() {
           <li className="list-group-item  d-flex justify-content-between align-items-center btn-choose-region">
             <Link
               to={`/buyticket/?city=${city.id}`}
-              className={`item ${city.id == cityId ? "checked_city" : ""}`}
+              className={`item ${city.id == cityId ? "focus" : ""}`}
             >
               {city.name}
             </Link>
