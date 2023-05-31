@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import "./header.scss";
 
 
+
+
 const Header = () => {
   const {isLoggedIn, setIsLoggedIn} = useContext(AppContext)
   // const { pathname } = useLocation();
@@ -66,10 +68,10 @@ const Header = () => {
             </Link>
             <ul className="dropdown-menu">
               <li>
-                <Link to="/">Phim đang chiếu</Link>
+                <Link to="/1">Phim đang chiếu</Link>
               </li>
               <li>
-                <Link to="/">Phim sắp chiếu</Link>
+                <Link to="/2">Phim sắp chiếu</Link>
               </li>
             </ul>
           </li>
