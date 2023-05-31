@@ -13,23 +13,22 @@ const Home = () => {
       <div className="container">
         <div className="section mb-3">
           <div className="section__header mb-2">
-            <h2>Trending Movies</h2>
-            <Link to="/movie">
+            <h2 className="drop-shadow-md font-medium">Phim Sắp Chiếu</h2>
+            <Link to="/2">
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-          {/* <MovieList category={category.movie} type={movieType.popular} /> */}
-          <MovieList />
+           <MovieList type={2}/>  
         </div>
 
         <div className="section mb-3">
           <div className="section__header mb-2">
-            <h2>Top Rated Movies</h2>
-            <Link to="/movie">
+            <h2 className=" drop-shadow-md font-medium">Phim Đang Chiếu</h2>
+            <Link to="/1">
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-          <MovieList category={category.movie} type={movieType.top_rated} />
+          <MovieList type={1}/>
         </div>
 
         {/* <div className="section mb-3">

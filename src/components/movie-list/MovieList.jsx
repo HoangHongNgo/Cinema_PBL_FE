@@ -12,38 +12,25 @@ import tmdbApi, { category } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
 import MovieCard from "../movie-card/MovieCard";
+import axios from "axios";
 
-// const MovieList = (props) =>
-const MovieList = () => {
+const MovieList = (props) => {
   const [items, setItems] = useState([]);
+  const type= props.type;
 
-  // useEffect(() => {
-  //   const getList = async () => {
-  //     let response = null;
-  //     const params = {};
-
-  //     if (props.type !== "similar") {
-  //       switch (props.category) {
-  //         case category.movie:
-  //           response = await tmdbApi.getMoviesList(props.type, { params });
-  //           break;
-  //         default:
-  //           response = await tmdbApi.getTvList(props.type, { params });
-  //       }
-  //     } else {
-  //       response = await tmdbApi.similar(props.category, props.id);
-  //     }
-  //     setItems(response.results);
-  //   };
-  //   getList();
-  // }, []);
+  
   useEffect(() => {
-    const getList = async () => {
-      let response = null;
-      response = await tmdbApi.getMoviesList();
-      setItems(response);
-      getList();
-    };
+    // Lấy dữ liệu từ API bằng Axios
+    axios.get(`https://cinema-00wj.onrender.com/movies/`)
+      .then((response) => {
+        setItems(response.data.filter(movie => {
+          return movie.status === type;
+        }));
+        console.log("Movie List : ", response.data);
+      })
+      .catch((error) => {
+        console.error('Lỗi khi lấy dữ liệu từ API:', error);
+      });
   }, []);
 
   return (
@@ -51,18 +38,13 @@ const MovieList = () => {
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
         {items.map((item, i) => (
           <SwiperSlide key={i}>
-            {/* <MovieCard item={item} category={props.category} /> */}
+           
             <MovieCard item={item} />
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
   );
-};
-
-MovieList.propTypes = {
-  category: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 export default MovieList;

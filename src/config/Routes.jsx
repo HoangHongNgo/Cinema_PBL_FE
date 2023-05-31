@@ -18,9 +18,10 @@ const Routes = () => {
       <Route path="/buyticket" component={Buy_ticket} />
       <Route path="/booking/:id" component={Bookingticket} />
 
-      <Route path="/:category/search/:keyword" component={Catalog} />
+      <Route path="/:status/search/:keyword" component={Catalog} />
+      <Route path="/:status" exact component={Catalog}/>
       <Route path="/detail/:id" exact component={Detail} />
-
+      
       <Route path="/blog" exact component={Blog} />
       <Route path="/" exact component={Home} />
     </Switch>

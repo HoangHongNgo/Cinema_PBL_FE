@@ -24,6 +24,23 @@ import ListTicket from "../../context/ListTicket";
 import InfoTicket from "./InfoTicket";
 import { useLocation } from "react-router-dom";
 
+
+
+const NextButton = styled(Button)({
+  border: '1px solid transparent',
+  backgroundColor: '#ff0000',
+  color: '#fff',
+  borderRadius: '30px',
+  padding: '0.5rem',
+  fontSize: '1.5rem',
+  fontWeight: '600',
+  boxShadow: '0px 0px 7px 8px #ff00004d',
+  transition: 'box-shadow 0.3s ease',
+  position: 'relative',
+  marginRight: '100px',
+  textAlign: 'center',
+ 
+});
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
