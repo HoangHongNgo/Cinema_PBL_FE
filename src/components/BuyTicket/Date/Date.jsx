@@ -24,6 +24,8 @@ const ShowtimesDate = () => {
   };
 
   const renderDates = () => {
+    const currentSearchParams = new URLSearchParams(location.search);
+    const existingDate = currentSearchParams.get("date");
     const dates = [];
     for (let i = 0; i < 6; i++) {
       const date = new Date();
@@ -37,14 +39,16 @@ const ShowtimesDate = () => {
 
       dates.push(
         <Link
-          className="showtimes_date justify-center"
+          className={`showtimes_date justify-center ${
+            existingDate == dataDate ? "checked_date" : ""
+          }`}
           data-date={dataDate}
           key={i}
           onClick={() => handleClick(dataDate)}
         >
           {formattedDate}
           <br />
-          <span className="small text-nowrap">{dayOfWeek}</span>
+          <span className={`small text-nowrap `}>{dayOfWeek}</span>
         </Link>
       );
     }

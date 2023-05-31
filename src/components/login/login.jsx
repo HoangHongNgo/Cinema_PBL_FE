@@ -43,7 +43,7 @@ export const Login = () => {
   });
 
   return (
-    <div className="login">
+    <div className="login my-56">
       <div className="login_container">
         <ul className="nav_container">
           <li className="nav_login">
