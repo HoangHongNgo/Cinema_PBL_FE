@@ -21,6 +21,23 @@ import 'tailwindcss/tailwind.css'
 import ListTicket from '../../context/ListTicket';
 
 
+
+
+const NextButton = styled(Button)({
+  border: '1px solid transparent',
+  backgroundColor: '#ff0000',
+  color: '#fff',
+  borderRadius: '30px',
+  padding: '0.5rem',
+  fontSize: '1.5rem',
+  fontWeight: '600',
+  boxShadow: '0px 0px 7px 8px #ff00004d',
+  transition: 'box-shadow 0.3s ease',
+  position: 'relative',
+  marginRight: '100px',
+  textAlign: 'center',
+ 
+});
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
@@ -244,6 +261,7 @@ const Bookingticket=()=> {
   return (
     <ListTicket.Provider value={[list, setList]}>
     <Ticket.Provider value={[state, setState]}>
+    <div className='mx-44'>
     <Stack sx={{ width: '100%' }} spacing={4}>
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {steps.map((label) => (
@@ -267,31 +285,33 @@ const Bookingticket=()=> {
         
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>{getStepContent(activeStep)}</Typography>
-          <Stack sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+
+          <NextButton variant="contained" onClick={handleNext} sx={{ ml: 1}}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          </NextButton>
             <Button
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
-              sx={{ mr: 1 }}
+              sx={{ mr: 1}}
             >
               Back
             </Button>
-            <Stack sx={{ flex: '1 1 auto' }} />
+         
             {/* {isStepOptional(activeStep) && (
               <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                 Skip
               </Button>
             )} */}
               
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
-          </Stack>
+            
+        
         </React.Fragment>
 
         
       )}
     </Stack>
+    </div>
     </Ticket.Provider>
     </ListTicket.Provider>
   );
