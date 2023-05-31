@@ -15,18 +15,20 @@ const MovieCard = (props) => {
   // const link = "/" + category[props.category] + "/" + item.id;
   // const link = "/movies/" + item.id;
 
-  
-
   return (
-    <div>
-      <div className="movie-card" style={{backgroundImage: `url(${item.banner_image})` }}>
-        <Button>
-          <i className="bx bx-play"></i>
-        </Button>
+    <a href={"http://localhost:3000/detail/" + item.id}>
+      <div>
+        <div
+          className="movie-card"
+          style={{ backgroundImage: `url(${item.banner_image})` }}
+        >
+          <Button>
+            <i className="bx bx-play"></i>
+          </Button>
+        </div>
+        <h3 className="font-semibold">{item.name}</h3>
       </div>
-       <h3 className="font-semibold">{item.name}</h3> 
-    </div>
-    
+    </a>
   );
 };
 
