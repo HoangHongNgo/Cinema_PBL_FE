@@ -48,7 +48,7 @@ export const Register = () => {
         <div className="form_container">
           <form onSubmit={onSubmit} noValidate>
             <div className="form_information">
-              <Input
+              {/* <Input
                 name="email"
                 label="Email"
                 register={register}
@@ -67,7 +67,7 @@ export const Register = () => {
                 type="password"
                 className="form_input"
                 autoComplete="on"
-              />
+              /> */}
             </div>
             <div className="button_form">
               <button className="btn_form" type="submit">

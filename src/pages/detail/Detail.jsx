@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import tmdbApi from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
@@ -11,12 +12,14 @@ import VideoList from "./VideoList";
 import MovieList from "../../components/movie-list/MovieList";
 import axios from "axios";
 
-import Button from "../../components/button/Button";
+import Button, { OutlineButton } from "../../components/button/Button";
 
 const Detail = () => {
   console.log("details page");
 
   const { id } = useParams();
+
+  let history = useHistory();
 
   const [item, setItem] = useState(null);
 
@@ -41,7 +44,7 @@ const Detail = () => {
             className="banner"
             style={{ backgroundImage: `url(${item.banner_image})` }}
           ></div>
-          <div className="mb-3 movie-content container">
+          <div className="movie-content container">
             <div className="movie-content__poster">
               <div
                 className="movie-content__poster__img"
@@ -61,22 +64,22 @@ const Detail = () => {
               <p className="overview">{item.description}</p>
               <div className="moreinfo">
                 <div>
-                  <span> Xếp hạng </span>
+                  <span> Rating </span>
                   <br></br>
                   <strong className="mg-left">{item.rating} </strong>
                 </div>
                 <div>
-                  <span> Khởi chiếu </span>
+                  <span> Debut </span>
                   <br></br>
                   <strong> {item.release_date} </strong>
                 </div>
                 <div>
-                  <span> Thời lượng</span>
+                  <span> Duration </span>
                   <br></br>
                   <strong className="mg-left"> {item.duration_minute}</strong>
                 </div>
                 <div>
-                  <span> Giới hạn tuổi</span>
+                  <span> Age Limit </span>
                   <br></br>
                   <strong className="mg-left_age"> {item.age_limit} </strong>
                 </div>
@@ -101,8 +104,23 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div className="container">
-            <div className="section mb-3">
+          <div className="container flex justify-center mb-10">
+            <Button
+              onClick={() => {
+                history.push(
+                  "/buyticket/?city=3&cinema=1&date=2023-05-30&movie=" + item.id
+                );
+                console.log(
+                  "/buyticket/?city=3&cinema=1&date=2023-05-30&movie=" + item.id
+                );
+              }}
+              className="large"
+            >
+              Mua vé ngay !
+            </Button>
+          </div>
+          <div className="container my-3">
+            <div className="section">
               {/* <VideoList id={item.id}/> */}
               <iframe
                 src={`https://www.youtube.com/embed/${item.trailer_id}`}
@@ -113,11 +131,11 @@ const Detail = () => {
             <div className="m-4">
               <div className="">
                 <div className="container mx-auto text-center text-2xl w-fit border-b-2 border-b-red-600 p-6 hover:bg-red-600 hover:border-b-white">
-                  <p className="font-extrabold">Đánh giá</p>
+                  <p className="font-extrabold">Đánh giá phim</p>
                 </div>
               </div>
-              <div className="mt-8 w-2/3 mx-auto">
-                <div className="mb-4">
+              <div className="my-8 w-2/3 mx-auto">
+                <div className="mb-8">
                   <input
                     className="block w-full h-20 p-4 m-2 bg-black rounded-xl border-2 border-red-600 caret-red-600 hover:border-4"
                     placeholder="Viết ghi chú"
@@ -131,14 +149,139 @@ const Detail = () => {
                     placeholder="Email"
                   ></input>
                   <div className="inline m-2">
-                    <Button className="small">Đánh giá</Button>
+                    <Button className="small">Gửi</Button>
                   </div>
                 </div>
-                <div>Review</div>
-                <div>Review</div>
-                <div>Review</div>
-                <div>Review</div>
-                <div>Review</div>
+                <div className="my-6">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
+                    <div className="font-bold">Ng. H. Hoang</div>
+                  </div>
+                  <div className="my-2">
+                    <div>
+                      <p className="text-sm">
+                        I watched it for like 30-40 minutes before I gave up, it
+                        looks like straight to video movie with lame completely
+                        unrealistic action scenes and cliche dialogues, pretty
+                        much unwatchable. I was going into it hoping I will
+                        enjoy dumb action flick, but man oh man, they made them
+                        in 80s/90s or even later way better, even the movements
+                        while fighting seemed like slow motion and not sure what
+                        was it about covering yourself against gunfire with
+                        hands, are you going to stop bullet with your hands?
+                        Completely ridiculous movie, gave it 50%/2.5 and I feel
+                        very generous, you are better off watching Rambo or
+                        whatever Cage movies from 90s than this trash. Even my
+                        wife who likes dumb movies was rolling her eyes at those
+                        action scenes.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-end mt-2">
+                      <OutlineButton className="extrasmall mx-1">
+                        Like
+                      </OutlineButton>
+                      <OutlineButton className="extrasmall mx-1">
+                        Disl
+                      </OutlineButton>
+                    </div>
+                  </div>
+                </div>
+                <div className="my-6">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
+                    <div className="font-bold">H. Ph. Le</div>
+                  </div>
+                  <div className="my-2">
+                    <div>
+                      <p className="text-sm">
+                        Repetitive action scenes with basically the same
+                        choreography only in different locations are boring.
+                        Personally I liked the second movie more because it had
+                        variations, the action was better choreographed and its
+                        pace was a bit slower so it was much clearer what is
+                        going on. In Chapter 4 there were some nice scenes, I
+                        liked the car fighting and the view from the top in the
+                        house shootout. But overall the movie felt boring, it
+                        was hard for me to keep interest, especially with such
+                        nonsensical story.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-end mt-2">
+                      <OutlineButton className="extrasmall mx-1">
+                        Like
+                      </OutlineButton>
+                      <OutlineButton className="extrasmall mx-1">
+                        Disl
+                      </OutlineButton>
+                    </div>
+                  </div>
+                </div>
+                <div className="my-6">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
+                    <div className="font-bold">L. V. H. Duc</div>
+                  </div>
+                  <div className="my-2">
+                    <div>
+                      <p className="text-sm">
+                        The Raid 2 is much better both with action and as a
+                        movie in general. Gareth Evans is not your average
+                        "direct to video" director, he actually knows how to
+                        build a scene and has very good sense of cinema as art.
+                        Not surprising he is now working on big productions.
+                        Highly recommended for action aficionados.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-end mt-2">
+                      <OutlineButton className="extrasmall mx-1">
+                        Like
+                      </OutlineButton>
+                      <OutlineButton className="extrasmall mx-1">
+                        Disl
+                      </OutlineButton>
+                    </div>
+                  </div>
+                </div>
+                <div className="my-6">
+                  <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
+                    <div className="font-bold">Ng. Th. Liem</div>
+                  </div>
+                  <div className="my-2">
+                    <div>
+                      <p className="text-sm">
+                        The Chinese dont like black people. We know that from
+                        how Disney markets to them. As for this **** film it
+                        made $185 million world wide. I heard the production
+                        cost was around $250 million but that dosent include the
+                        marketing. Which is usually 1.5x the production budget.
+                        So in this case it can be as high as $375 million if not
+                        more. So to break even they would have to make $625/$700
+                        million depending on the marketing. Also you cant trust
+                        site like Rotten Tomatoes since they delete negative
+                        reviews. They consider any criticism towards films with
+                        lead women/minorities as review bombing. Cause you know,
+                        a film cant suck due to poor writing, acting, and
+                        horrible CGI.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-end mt-2">
+                      <OutlineButton className="extrasmall mx-1">
+                        Like
+                      </OutlineButton>
+                      <OutlineButton className="extrasmall mx-1">
+                        Disl
+                      </OutlineButton>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full flex justify-center mt-2">
+                  <OutlineButton className="small">Xem thêm</OutlineButton>
+                </div>
               </div>
             </div>
           </div>

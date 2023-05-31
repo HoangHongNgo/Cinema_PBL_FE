@@ -11,24 +11,26 @@ const Home = () => {
     <>
       <HeroSlide />
       <div className="container">
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2 className="drop-shadow-md font-medium">Phim Sắp Chiếu</h2>
+        <div className="section mb-10">
+          <div className="section__header mb-4">
+            <h2 className="drop-shadow-md font-bold text-2xl">Ongoing Movie</h2>
             <Link to="/2">
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-           <MovieList type={2}/>  
+          <MovieList type={2} />
         </div>
 
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2 className=" drop-shadow-md font-medium">Phim Đang Chiếu</h2>
+        <div className="section mb-10">
+          <div className="section__header mb-4">
+            <h2 className=" drop-shadow-md font-bold text-2xl">
+              Incoming Movie
+            </h2>
             <Link to="/1">
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-          <MovieList type={1}/>
+          <MovieList type={1} />
         </div>
 
         {/* <div className="section mb-3">
