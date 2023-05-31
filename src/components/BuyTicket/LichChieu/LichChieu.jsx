@@ -18,8 +18,8 @@ export default function LichChieu() {
     // Lấy dữ liệu từ API bằng Axios
     axios
       .get(
-        `https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}&date=${date}&movie=${
-          movie ? movie : null
+        `https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}&date=${date}${
+          movie ? `&movie=${movie}` : ""
         }`
       )
       .then((response) => {
@@ -27,11 +27,7 @@ export default function LichChieu() {
         console.log("show : ", response.data);
       })
       .catch((error) => {
-        console.error(
-          "Lỗi khi lấy dữ liệu từ API:",
-          `https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}&date=${date}`,
-          error
-        );
+        console.error("Lỗi khi lấy dữ liệu từ API:", error);
       });
   }, [cinemaId, date]);
   useEffect(() => {

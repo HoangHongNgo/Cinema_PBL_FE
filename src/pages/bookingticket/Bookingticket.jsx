@@ -153,7 +153,7 @@ const ColorlibStepLabel = styled(StepLabel)(() => ({
       color: "rgb(255, 255, 255, 0.9)",
     },
 
-    color: "rgb(255, 0, 64)	",
+    color: "rgb(255, 255, 255, 0.3)",
   },
 }));
 
@@ -197,19 +197,22 @@ ColorlibStepIcon.propTypes = {
 const steps = ["Chọn ghế", "Thanh toán", "Thông tin vé"];
 
 const Bookingticket = () => {
+  console.log("Booking ticket Page");
   let id = useLocation();
   id = id.pathname.split("/").pop();
   const [seats, setSeats] = useState([]);
   const [show, setShow] = useState({});
+  console.log("seats, shows : ", seats, show);
 
   useEffect(() => {
-    console.log(id);
+    console.log("GET API");
     // Lấy dữ liệu từ API bằng Axios
     axios
       .get(`https://cinema-00wj.onrender.com/shows/${id}/`)
       .then((response) => {
         console.log(response);
         setShow(response.data);
+        setActiveStep(0);
         // setSeats(response.data);
       })
       .catch((error) => {
@@ -226,7 +229,7 @@ const Bookingticket = () => {
       });
   }, []);
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(null);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -252,7 +255,7 @@ const Bookingticket = () => {
       case 2:
         return <InfoTicket />;
       default:
-        return <ChoiceSeat seats={seats} />;
+        return <div></div>;
       // return "Unknown Step";
     }
   }
@@ -260,7 +263,7 @@ const Bookingticket = () => {
   return (
     <ListTicket.Provider value={[list, setList]}>
       <Ticket.Provider value={[state, setState]}>
-        <div className="mx-44 mt-32">
+        <div className="mx-44 my-36">
           <Stack sx={{ width: "100%" }} spacing={4}>
             <Stepper
               alternativeLabel
@@ -292,7 +295,8 @@ const Bookingticket = () => {
                 </Typography>
                 <Stack sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                   <Button
-                    color="inherit"
+                    color="error"
+                    variant="contained"
                     disabled={activeStep === 0}
                     onClick={handleBack}
                     sx={{ mr: 1 }}
@@ -306,7 +310,12 @@ const Bookingticket = () => {
               </Button>
             )} */}
 
-                  <Button onClick={handleNext}>
+                  <Button
+                    color="error"
+                    variant="contained"
+                    onClick={handleNext}
+                    disabled={list.length === 0}
+                  >
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
                   </Button>
                 </Stack>

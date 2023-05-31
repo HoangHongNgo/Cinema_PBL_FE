@@ -11,7 +11,7 @@ const ChoiceSeat = (props) => {
   const [groupedSeats, setGroupedSeats] = useState({});
   const [state, setState] = useContext(Ticket);
   const [list, setList] = useContext(ListTicket);
-
+  console.log(Object.entries(groupedSeats));
   const handleSeatClick = (seat) => {
     let updatedSelectedSeats = [];
     if (selectedSeats.includes(seat)) {
@@ -58,18 +58,18 @@ const ChoiceSeat = (props) => {
   let show_date = new Date(show.start_time);
   return (
     <div className="rowticket ">
-      <div className="col-lg-4 col-12 order-sm-last">
+      <div className="col-lg-4 col-12 mt-20 order-sm-last justify-center flex flex-col space-y-4">
         <div className="cardticket cardticket-sm">
           <div className="cardticket-body">
             <div className="rowticket">
-              <div className="col-ticket">
-                <p className="textticket text-truncate">
+              <div className="col-ticket my-2">
+                <p className="textticket text-truncate my-2">
                   <strong>{show.movie.name}</strong>
                 </p>
-                <p className="textticket text-truncate">
+                <p className="textticket text-truncate my-2">
                   <strong>{show.Cinema_Room.cinema.name}</strong>
                 </p>
-                <p className="textticket text-truncate">
+                <p className="textticket text-truncate my-2">
                   Suất
                   <strong className="marginticket-left">
                     {show_date.getHours()}:{show_date.getMinutes()}
@@ -80,7 +80,7 @@ const ChoiceSeat = (props) => {
                     {show_date.getFullYear()}{" "}
                   </strong>
                 </p>
-                <p className="textticket text-truncate">
+                <p className="textticket text-truncate  my-2">
                   Phòng Chiếu
                   <strong className="marginticket-left">
                     {" "}
@@ -94,11 +94,13 @@ const ChoiceSeat = (props) => {
         <div className="cardticket sticky-header-bars">
           <div className="cardticket-body">
             <div className="rowticket align-items-center ">
-              <div className="col-ticket">
-                <h6 className="textticket text-uppercase mb-2">
-                  Tổng đơn hàng
-                </h6>
-                <span className="h2 mb-0 textticket">{state.price} đ</span>
+              <div className="col-ticket my-4">
+                <p className="textticket text-uppercase my-2">
+                  <strong>Tổng đơn hàng</strong>
+                </p>
+                <span className="h2 mb-0 textticket my-2">
+                  {parseInt(state.price) + 3.0}.000 đ
+                </span>
               </div>
             </div>
           </div>
