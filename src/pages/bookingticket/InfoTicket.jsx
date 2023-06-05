@@ -29,20 +29,11 @@ const InfoTicket = (props) => {
         )
         .then((res) => {
           setTickets((prevTickets) => [...prevTickets, res.data]);
-          let ticketInfo = tickets
-            .map(
-              (ticket) =>
-                `Ticket ID: ${ticket.id}, Owner ID: ${ticket.owner.id}`
-            )
-            .join(", ");
-          setQr(
-            "Owner ID: 1, Ticket ID: 540, Owner ID: 1, Ticket ID: 541, Owner ID: 1, Ticket ID: 541,"
-          );
+          
+          
           console.log(
             "res purchased ticket : ",
-            res.data,
-            "ticket info : ",
-            qr
+            res.data
           );
         })
         .catch((err) => {
@@ -50,8 +41,25 @@ const InfoTicket = (props) => {
         });
     });
   }, []);
+
+  useEffect(()=>{
+    let ticketInfo = tickets
+            .map(
+              (ticket) =>
+                `Ticket ID: ${ticket.id}, Owner ID: ${ticket.owner.id}`
+            )
+            .join(", ");
+          setQr(
+            ticketInfo
+          );
+          console.log( "ticket info : ",
+          qr);
+
+
+  }, [tickets]);
   console.log("tickets : ", tickets);
   return (
+   
     <div className="w-3/4 mx-auto">
       <div>
         <div>
