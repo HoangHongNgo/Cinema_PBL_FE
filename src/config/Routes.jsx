@@ -17,12 +17,14 @@ const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/buyticket" component={Buy_ticket} />
       <Route path="/booking/:id" component={Bookingticket} />
-
-      <Route path="/:status/search/:keyword" component={Catalog} />
-      <Route path="/:status" exact component={Catalog}/>
+      <Route
+        path="/category/:status/search/:keyword"
+        exact
+        component={Catalog}
+      />
+      <Route path="/category/:status" exact component={Catalog} />
       <Route path="/detail/:id" exact component={Detail} />
-      
-      <Route path="/blog" exact component={Blog} />
+      <Route path="/blog" component={Blog} />
       <Route path="/" exact component={Home} />
     </Switch>
   );

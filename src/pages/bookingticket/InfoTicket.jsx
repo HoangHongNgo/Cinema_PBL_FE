@@ -10,6 +10,7 @@ const InfoTicket = (props) => {
   const [state, setState] = useContext(Ticket);
   const [list, setList] = useContext(ListTicket);
   const [tickets, setTickets] = useState([]);
+  const [qr, setQr] = useState("");
   useEffect(() => {
     console.log(list);
     list.forEach((element) => {
@@ -28,7 +29,21 @@ const InfoTicket = (props) => {
         )
         .then((res) => {
           setTickets((prevTickets) => [...prevTickets, res.data]);
-          console.log("res purchased ticket : ", res.data);
+          let ticketInfo = tickets
+            .map(
+              (ticket) =>
+                `Ticket ID: ${ticket.id}, Owner ID: ${ticket.owner.id}`
+            )
+            .join(", ");
+          setQr(
+            "Owner ID: 1, Ticket ID: 540, Owner ID: 1, Ticket ID: 541, Owner ID: 1, Ticket ID: 541,"
+          );
+          console.log(
+            "res purchased ticket : ",
+            res.data,
+            "ticket info : ",
+            qr
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -63,7 +78,7 @@ const InfoTicket = (props) => {
       </div>
       <div className="grid grid-cols-3 gap-4 mt-9">
         <div className="bg-white rounded-xl hover:scale-105 transition-transform duration-300 ">
-          <QRCode className="w-2/3 h-full m-auto" value="21314354354"></QRCode>
+          <QRCode className="w-2/3 h-full m-auto" value={qr}></QRCode>
         </div>
         <div className="col-span-2 bg-white rounded-xl hover:scale-105 transition-transform duration-300 ">
           <table className="table rounded-xl overflow-hidden">

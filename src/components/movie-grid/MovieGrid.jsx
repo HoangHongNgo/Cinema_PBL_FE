@@ -25,14 +25,7 @@ const MovieGrid = (props) => {
             else return true;
           })
         );
-        console.log(
-          "Movie List : ",
-          response.data.filter((movie) => {
-            return movie.status == props.status;
-          }),
-          "status",
-          props.status
-        );
+        console.log("Movie List : ", items, "status", props.status);
       })
       .catch((error) => {
         console.error("Lỗi khi lấy dữ liệu từ API:", error);
@@ -47,7 +40,7 @@ const MovieGrid = (props) => {
         .get(
           `https://cinema-00wj.onrender.com/movies/search${
             keywords[0] == "rdf" ? "_rdf" : ""
-          }/?search=${keywords[1].replace(" ", "&")}`
+          }/?search=${keywords[1]}`
         )
         .then((response) => {
           setItems(response.data);
@@ -92,7 +85,7 @@ const MovieSearch = (props) => {
   const goToSearch = useCallback(() => {
     if (keyword.trim().length > 0) {
       history.push(
-        `/${props.status}/search/${isRDF ? "rdf" : "nor"}+${keyword}`
+        `/category/${props.status}/search/${isRDF ? "rdf" : "nor"}+${keyword}`
       );
     }
   }, [keyword, props.status, history, isRDF]);
