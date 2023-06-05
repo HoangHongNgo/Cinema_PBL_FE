@@ -36,6 +36,29 @@ const Detail = () => {
     getDetail();
   }, [id]);
 
+  const [note, setNote] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [sub, setSub] = useState(false);
+
+  const handleNoteChange = (event) => {
+    setNote(event.target.value);
+  };
+
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Handle form submission here with the form data (note, nickname, email)
+    console.log("Form submitted:", note, nickname, email);
+    setSub(true);
+  };
+
   return (
     <>
       {item && (
@@ -138,20 +161,52 @@ const Detail = () => {
                 <div className="mb-8">
                   <input
                     className="block w-full h-20 p-4 m-2 bg-black rounded-xl border-2 border-red-600 caret-red-600 hover:border-4"
+                    value={note}
+                    onChange={handleNoteChange}
                     placeholder="Viết ghi chú"
                   ></input>
                   <input
                     className="w-1/3 inline h-8 p-4 m-2 bg-black rounded-xl border-2 border-red-600"
+                    value={nickname}
+                    onChange={handleNicknameChange}
                     placeholder="Biệt danh"
                   ></input>
                   <input
                     className="w-1/3 inline h-8 p-4 m-2 bg-black rounded-xl border-2 border-red-600"
                     placeholder="Email"
+                    value={email}
+                    onChange={handleEmailChange}
                   ></input>
                   <div className="inline m-2">
-                    <Button className="small">Gửi</Button>
+                    <Button className="small" onClick={handleSubmit}>
+                      Gửi
+                    </Button>
                   </div>
                 </div>
+                {sub ? (
+                  <div className="my-6">
+                    <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
+                      <div className="font-bold">{nickname}</div>
+                    </div>
+                    <div className="my-2">
+                      <div>
+                        <p className="text-sm">{note}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-end mt-2">
+                        <OutlineButton className="extrasmall mx-1">
+                          Like
+                        </OutlineButton>
+                        <OutlineButton className="extrasmall mx-1">
+                          Disl
+                        </OutlineButton>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
                 <div className="my-6">
                   <div className="my-2 w-full border-b-2 border-red-600 hover:border-white hover:bg-red-600 pl-1">
                     <div className="font-bold">Ng. H. Hoang</div>

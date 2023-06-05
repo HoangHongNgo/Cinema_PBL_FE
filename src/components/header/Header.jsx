@@ -54,7 +54,7 @@ const Header = () => {
 
           <li className="dropdown">
             <Link
-              to="/3"
+              to="category/3"
               className="dropdown-toggle"
               data-toggle="dropdown"
               role="button"
@@ -65,10 +65,10 @@ const Header = () => {
             </Link>
             <ul className="dropdown-menu">
               <li>
-                <Link to="/1">Phim đang chiếu</Link>
+                <Link to="category/1">Phim đang chiếu</Link>
               </li>
               <li>
-                <Link to="/2">Phim sắp chiếu</Link>
+                <Link to="category/2">Phim sắp chiếu</Link>
               </li>
             </ul>
           </li>

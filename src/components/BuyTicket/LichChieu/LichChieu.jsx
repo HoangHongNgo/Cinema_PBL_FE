@@ -106,7 +106,7 @@ export default function LichChieu() {
             </p>
           </div>
 
-          {shows_by_movie.map((movie) => (
+          {shows_by_movie?.map((movie) => (
             <div className="card-body">
               <div className="card_image">
                 <a href="/phim/chuyen-toi-va-ma-quy-thanh-nguoi-mot-nha/">
