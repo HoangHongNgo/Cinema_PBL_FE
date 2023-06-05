@@ -2,6 +2,7 @@ import React from "react";
 import PageHeader from "../../components/page-header/PageHeader";
 import Input from "../../components/input/InputBase";
 import Button, { OutlineButton } from "../../components/button/Button";
+import Blog_Post from "./Blog_Post";
 
 import "./blog.scss";
 
@@ -9,11 +10,11 @@ const Blog = () => {
   console.log("blog page");
   return (
     <div>
-      <PageHeader></PageHeader>
+      <PageHeader>Blog Phim</PageHeader>
       <div className="flex flex-row justify-between">
         <div className="w-1/5"></div>
         <div className="w-2/3">
-          <div className="bg-neutral-900 rounded-xl flex flex-col justify-center w-full my-6 p-4 hover:scale-105">
+          <div className="bg-neutral-800 rounded-xl flex flex-col justify-center w-full my-6 p-4 hover:scale-105">
             <div className="m-5">
               <div className="w-full">
                 <div className="">
@@ -30,16 +31,7 @@ const Blog = () => {
               </div>
             </div>
           </div>
-          <div className="bg-neutral-900 rounded-xl flex flex-col justify-center w-full my-6 p-4">
-            <div className="m-5">
-              <div className="border-b-2 border-zinc-600">
-                <p>Ng. H. Hoang</p>
-              </div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
+          <Blog_Post></Blog_Post>
         </div>
 
         <div className="w-1/5"></div>
