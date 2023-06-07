@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import AppContext from "../../contexts/app.context";
-import { GetToken } from "../../utils/Common";
+import { GetToken, RemovedUserSession } from "../../utils/Common";
 
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,16 @@ const Header = () => {
   // const { pathname } = useLocation();
   const headerRef = useRef(null);
   // const active = headerNav.findIndex(e=>e.path === pathname);
+  const handleLogout = () => {
+    RemovedUserSession();
+  };
+
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    console.log("isLoggedIn : ", isLoggedIn);
+    setUserName(localStorage.getItem("username"));
+  }, [isLoggedIn]);
 
   useEffect(() => {
     setIsLoggedIn(GetToken() ? true : false);
@@ -118,7 +128,9 @@ const Header = () => {
         ) : (
           <ul className="header__user">
             <li className="dropdown__user">
-              <Link to="/login">Đăng xuất</Link>
+              <Link to="/login" onClick={handleLogout}>
+                {userName}
+              </Link>
             </li>
           </ul>
         )}

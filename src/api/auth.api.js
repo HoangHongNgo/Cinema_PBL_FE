@@ -6,8 +6,8 @@ export const login = (body) => {
   
   axiosClient.post("/user/login/", body)
   .then((response) => {
-    console.log(response);
-    SetUserSession(response.token)
+    console.log("response : ",response);
+    SetUserSession(response) 
   })
   .catch((err) => {
     console.log(err);
