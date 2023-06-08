@@ -102,6 +102,9 @@ const Header = () => {
               <li>
                 <Link to="/blog">Quyền lợi</Link>
               </li>
+              <li>
+                <Link to="/history">Lịch sử</Link>
+              </li>
             </ul>
           </li>
         </ul>
