@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 
-
- const AppContext = createContext();
+const AppContext = createContext();
 
 // const initialCity =
 
@@ -9,11 +8,20 @@ export const AppProvider = ({ children }) => {
   // const [city, setCity] = useState(initialCity);
   const [isActive, setIsActive] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({
+    token: "",
+    username: "",
+    name: "",
+  });
 
   return (
     <AppContext.Provider
       value={{
-        isActive,isLoggedIn,setIsLoggedIn,
+        isActive,
+        isLoggedIn,
+        setIsLoggedIn,
+        user,
+        setUser,
       }}
     >
       {children}
@@ -21,4 +29,4 @@ export const AppProvider = ({ children }) => {
   );
 };
 
-export default AppContext
+export default AppContext;
