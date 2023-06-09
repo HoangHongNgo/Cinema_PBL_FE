@@ -50,10 +50,11 @@
 
       .form_information {
         display: flex;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
+       justify-content: space-between;
+       
+        // display: grid;
+        // grid-template-columns: 1fr 1fr;
+        // gap: 60px;
 
         .form_input {
           padding: 0 15px;

@@ -16,7 +16,7 @@ export default function Buy_ticket() {
 
   return (
 
-    <div className="container buyticket">
+    <div className="container buyticket ">
       <AppProvider>
         <City />
         <Cinema />

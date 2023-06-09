@@ -43,23 +43,23 @@ export const Login = () => {
   });
 
   return (
-    <div className="login my-56">
-      <div className="login_container">
+    <div className="login my-56 md:flex md:justify-center ssm:flex ssm:justify-center ">
+     <div className="login_container">
         <ul className="nav_container">
           <li className="nav_login">
             <Link to="/login" className="a_login">
               Đăng Nhập
             </Link>
           </li>
-          <li className="nav_register">
+          <li className="nav_register ">
             <Link to="/register" className="a_register">
               Đăng Ký
             </Link>
           </li>
         </ul>
-        <div className="form_container">
-          <form onSubmit={onSubmit} noValidate>
-            <div className="form_information">
+        <div className="form_container ">
+          <form onSubmit={onSubmit} noValidate >
+            <div className="form_information ">
               <Input
                 name="email"
                 label="Email"
@@ -77,7 +77,7 @@ export const Login = () => {
                 placeholder="Nhập Mật Khẩu Ở Đây"
                 errorMessage={errors.password?.message}
                 type="password"
-                className="form_input"
+                className="form_input mr-10"
                 autoComplete="on"
               />
             </div>
@@ -94,6 +94,7 @@ export const Login = () => {
           </form>
         </div>
       </div>
+      
     </div>
   );
 };

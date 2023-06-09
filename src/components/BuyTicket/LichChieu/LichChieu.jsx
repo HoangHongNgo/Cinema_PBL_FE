@@ -66,7 +66,7 @@ export default function LichChieu() {
   console.log("shows_by_movie : ", shows_by_movie);
   return (
     <>
-      <div className="col-2">
+      <div className="col-2 basis-10 md:w-auto">
         <div id="showtimes">
           <ShowtimesDate />
 
