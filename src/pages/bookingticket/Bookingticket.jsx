@@ -22,25 +22,21 @@ import Ticket from "../../context/Ticket";
 import "tailwindcss/tailwind.css";
 import ListTicket from "../../context/ListTicket";
 import InfoTicket from "./InfoTicket";
-import { Link, useLocation,useHistory } from "react-router-dom";
-
-
-
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 const NextButton = styled(Button)({
-  border: '1px solid transparent',
-  backgroundColor: '#ff0000',
-  color: '#fff',
-  borderRadius: '30px',
-  padding: '0.5rem',
-  fontSize: '1.5rem',
-  fontWeight: '600',
-  boxShadow: '0px 0px 7px 8px #ff00004d',
-  transition: 'box-shadow 0.3s ease',
-  position: 'relative',
-  marginRight: '100px',
-  textAlign: 'center',
- 
+  border: "1px solid transparent",
+  backgroundColor: "#ff0000",
+  color: "#fff",
+  borderRadius: "30px",
+  padding: "0.5rem",
+  fontSize: "1.5rem",
+  fontWeight: "600",
+  boxShadow: "0px 0px 7px 8px #ff00004d",
+  transition: "box-shadow 0.3s ease",
+  position: "relative",
+  marginRight: "100px",
+  textAlign: "center",
 });
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -221,7 +217,7 @@ const Bookingticket = () => {
   const [seats, setSeats] = useState([]);
   const [show, setShow] = useState({});
   console.log("seats, shows : ", seats, show);
-  let history=useHistory();
+  let history = useHistory();
 
   useEffect(() => {
     console.log("GET API");
@@ -251,12 +247,11 @@ const Bookingticket = () => {
   const [activeStep, setActiveStep] = useState(null);
 
   const handleNext = () => {
-    if (activeStep === steps.length - 1){
+    if (activeStep === steps.length - 1) {
       history.push("/");
-          } else {
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
-   
   };
 
   const handleBack = () => {
@@ -287,7 +282,7 @@ const Bookingticket = () => {
   return (
     <ListTicket.Provider value={[list, setList]}>
       <Ticket.Provider value={[state, setState]}>
-        <div className="mx-44 my-36">
+        <div className="xl:mx-44 my-36 md:mx-0">
           <Stack sx={{ width: "100%" }} spacing={4}>
             <Stepper
               alternativeLabel
@@ -303,9 +298,7 @@ const Bookingticket = () => {
               ))}
             </Stepper>
             {activeStep === steps.length ? (
-             
-                  <Link to="/"></Link>
-               
+              <Link to="/"></Link>
             ) : (
               <React.Fragment>
                 <Typography sx={{ mt: 2, mb: 1 }}>
@@ -315,7 +308,7 @@ const Bookingticket = () => {
                   <Button
                     color="error"
                     variant="contained"
-                    disabled={activeStep === 0 || activeStep ===2}
+                    disabled={activeStep === 0 || activeStep === 2}
                     onClick={handleBack}
                     sx={{ mr: 1 }}
                   >

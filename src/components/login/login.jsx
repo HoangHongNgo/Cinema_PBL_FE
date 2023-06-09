@@ -1,23 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
 import "./login.scss";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
-import { login } from "../../api/auth.api";
 import AppContext from "../../contexts/app.context";
 import { useHistory } from "react-router-dom";
-import { RemovedUserSession } from "../../utils/Common";
+import { RemovedUserSession, SetUserSession } from "../../utils/Common";
+import axios from "axios";
 
 const loginSchema = schema.omit(["confirm_password"]);
 
 export const Login = () => {
-  const { setIsLoggedIn } = useContext(AppContext);
+  const { setIsLoggedIn, setUser } = useContext(AppContext);
   useEffect(() => {
-    RemovedUserSession();
     setIsLoggedIn(false);
   }, []);
   const history = useHistory();
@@ -28,18 +26,20 @@ export const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) });
 
-  const loginMutation = useMutation({
-    mutationFn: (body) => login(body),
-  });
-
   const onSubmit = handleSubmit((data) => {
-    loginMutation.mutate(data, {
-      onSuccess: (data) => {
-        console.log(data);
+    console.log(data);
+    axios
+      .post("https://cinema-00wj.onrender.com/user/login/", data)
+      .then((response) => {
+        console.log("response : ", response.data);
         setIsLoggedIn(true);
-        history.push("/");
-      },
-    });
+        SetUserSession(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("success");
+    history.push("/");
   });
 
   return (

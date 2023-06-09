@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import "./register.scss";
 import { Link } from "react-router-dom";
@@ -7,6 +7,10 @@ import { schema } from "../../utils/rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../input/Input";
 import { registerUser } from "../../api/auth.api";
+import { RemovedUserSession, SetUserSession } from "../../utils/Common";
+import axios from "axios";
+import AppContext from "../../contexts/app.context";
+import { useHistory } from "react-router-dom";
 
 const loginSchema = schema.omit(["confirm_password"]);
 export const Register = () => {
@@ -17,17 +21,30 @@ export const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) });
 
-  const loginMutation = useMutation({
-    mutationFn: (body) => registerUser(body),
-  });
+  const { setIsLoggedIn, setUser } = useContext(AppContext);
+
+  useEffect(() => {
+    setIsLoggedIn(false);
+  }, []);
+
+  const history = useHistory();
 
   // const onSubmit = (data) => console.log(data);
   const onSubmit = handleSubmit((data) => {
-    loginMutation.mutate(data, {
-      onSuccess: (data) => {
-        console.log(data);
-      },
-    });
+    console.log(data);
+    axios
+      .post("https://cinema-00wj.onrender.com/user/register/", data)
+      .then((response) => {
+        console.log("data : ", data);
+        console.log("register success");
+        console.log("response : ", response.data);
+        setIsLoggedIn(true);
+        SetUserSession(response.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   return (
@@ -48,7 +65,7 @@ export const Register = () => {
         <div className="form_container">
           <form onSubmit={onSubmit} noValidate>
             <div className="form_information">
-              {/* <Input
+              <Input
                 name="email"
                 label="Email"
                 register={register}
@@ -67,11 +84,32 @@ export const Register = () => {
                 type="password"
                 className="form_input"
                 autoComplete="on"
-              /> */}
+              />
+            </div>
+            <div className="form_information">
+              <Input
+                name="username"
+                label="Username"
+                register={register}
+                placeholder="Nhập Username Ở Đây"
+                errorMessage={errors.username?.message}
+                type="username"
+                className="form_input"
+              />
+
+              <Input
+                label="Name"
+                name="name"
+                register={register}
+                placeholder="Nhập Tên Ở Đây"
+                errorMessage={errors.name?.message}
+                type="name"
+                className="form_input"
+              />
             </div>
             <div className="button_form">
               <button className="btn_form" type="submit">
-                Đăng Ky
+                Đăng Ký
               </button>
             </div>
             <div className="forgotPassword_form">

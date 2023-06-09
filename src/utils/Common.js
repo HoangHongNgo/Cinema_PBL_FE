@@ -21,15 +21,15 @@ export const GetEmailSession = (email) => {
     return localStorage.getItem('token' || null)
   }
   
-  export const SetUserSession = (token) => {
-    localStorage.setItem('token', token)
-    // localStorage.setItem('username', JSON.stringify(username))
-    // localStorage.setItem('id', JSON.stringify(id))
+  export const SetUserSession = (user) => {
+    localStorage.setItem('token', user.token)
+    localStorage.setItem('username', user.username)
+    localStorage.setItem('name', user.name)
   }
   
   export const RemovedUserSession = () => {
     localStorage.removeItem('token')
-    // localStorage.removeItem('username')
-    // localStorage.removeItem('id')
+    localStorage.removeItem('username')
+    localStorage.removeItem('name')
 }
   

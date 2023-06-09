@@ -58,9 +58,9 @@ const ChoiceSeat = (props) => {
   let show_date = new Date(show.start_time);
   console.log("Object.entries : ", Object.entries(groupedSeats));
   return (
-    <div className="rowticket ">
-      <div className="col-lg-4 col-12 mt-20 order-sm-last justify-center flex flex-col space-y-4">
-        <div className="cardticket cardticket-sm hover:scale-110 transition-transform duration-300">
+    <div className="rowticket xl:flex-nowrap md:flex-wrap">
+      <div className="col-lg-4 justify-center col-12 xl:mt-20 md:mt-2 order-sm-last flex xl:flex-col md:flex-row md:mx-auto md:w-full xl:w-1/3 space-y-4">
+        <div className="cardticket cardticket-sm hover:scale-110 transition-transform duration-300 md:mr-3">
           <div className="cardticket-body">
             <div className="rowticket">
               <div className="col-ticket my-2">
@@ -96,7 +96,7 @@ const ChoiceSeat = (props) => {
           <div className="cardticket-body">
             <div className="rowticket align-items-center ">
               <div className="col-ticket my-4">
-                <p className="textticket text-uppercase my-2"> 
+                <p className="textticket text-uppercase my-2">
                   <strong>Tổng đơn hàng</strong>
                 </p>
                 <span className="h2 mb-0 textticket my-2">
@@ -108,27 +108,17 @@ const ChoiceSeat = (props) => {
         </div>
         <div></div>
       </div>
-      <div className="col-lg-8 col-12">
+      <div className="col-lg-8 col-12 mx-auto">
         <div class="ticketing-content">
           <div className="seat-selection">
-            <div className="legend">
-              <div>
-                <span></span>
-                <p>Ghế Đơn</p>
-              </div>
-              <div>
-                <span className="seat-area-3"></span>
-                <p>Ghế Đôi</p>
-              </div>
-            </div>
             <div className="legend">
               <div>
                 <span className="selected"></span>
                 <p>Ghế bạn chọn</p>
               </div>
               <div>
-                <span className="unavailable"></span>
-                <p>Không thể chọn</p>
+                <span></span>
+                <p>Ghế Đơn</p>
               </div>
 
               <div>
@@ -139,55 +129,55 @@ const ChoiceSeat = (props) => {
             <span className="front">Màn hình</span>
             <div className="seats-wrapper-parent">
               <div className="seats-wrapper">
-                <div className="seats-wrapper-row">
-                  <>
-                    <div className="seats seats-row">
-                      <div className="row-wrapper">
-                        {Object.entries(groupedSeats).map(
-                          ([seatRow, seatsInRow]) => (
-                            <ul key={seatRow} className="seat-row">
-                              <li className="rowname wide">{seatRow}</li>
-                            </ul>
-                          )
-                        )}
-                      </div>
-                    </div>
-
-                    <div className=" seats seats-map">
+                <div className="seats-wrapper-row flex">
+                  <div className="seats seats-row">
+                    <div className="row-wrapper lg:mr-7 md:mr-0">
                       {Object.entries(groupedSeats).map(
                         ([seatRow, seatsInRow]) => (
-                          <div key={seatRow} className="">
-                            {seatsInRow
-                              .sort((a, b) => a.seat_num - b.seat_num)
-                              .map((seat) => (
-                                <div className="row-wrapper bg-white">
-                                  <ul
-                                    key={seat.id}
-                                    className={`seat-row ${
-                                      selectedSeats.includes(seat)
-                                        ? "choice"
-                                        : ""
-                                    } ${seat.owner === null ? "hover:bg-red-500" : ""}`}
-                                    onClick={() => {
-                                      if (seat.owner == null)
-                                        return handleSeatClick(seat);
-                                    }}
-                                  >
-                                    <li
-                                      className={`textticket  ${
-                                        seat.owner == null ? "" : "taken"
-                                      } `}
-                                    >
-                                      {seat.seat_num}
-                                    </li>
-                                  </ul>
-                                </div>
-                              ))}
-                          </div>
+                          <ul key={seatRow} className="seat-row">
+                            <li className="rowname wide ">{seatRow}</li>
+                          </ul>
                         )
                       )}
                     </div>
-                  </>
+                  </div>
+
+                  <div className="seats seats-map xl:mx-auto">
+                    {Object.entries(groupedSeats).map(
+                      ([seatRow, seatsInRow]) => (
+                        <div key={seatRow} className="flex flex-nowrap">
+                          {seatsInRow
+                            .sort((a, b) => a.seat_num - b.seat_num)
+                            .map((seat) => (
+                              <div className="row-wrapper bg-white">
+                                <ul
+                                  key={seat.id}
+                                  className={`seat-row ${
+                                    selectedSeats.includes(seat) ? "choice" : ""
+                                  } ${
+                                    seat.owner === null
+                                      ? "hover:bg-red-500"
+                                      : ""
+                                  }`}
+                                  onClick={() => {
+                                    if (seat.owner == null)
+                                      return handleSeatClick(seat);
+                                  }}
+                                >
+                                  <li
+                                    className={`textticket  ${
+                                      seat.owner == null ? "" : "taken"
+                                    } `}
+                                  >
+                                    {seat.seat_num}
+                                  </li>
+                                </ul>
+                              </div>
+                            ))}
+                        </div>
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
