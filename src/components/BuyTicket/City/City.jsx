@@ -29,7 +29,10 @@ export default function City() {
   console.log("width : ", width);
 
   const classes = useStyles();
-  const [city, setCity] = useState({});
+  const [city, setCity] = useState({
+    id: 3,
+    name: "Đà Nẵng",
+  });
   const history = useHistory();
 
   useEffect(() => {

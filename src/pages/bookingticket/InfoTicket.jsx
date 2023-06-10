@@ -9,43 +9,38 @@ import axios from "axios";
 const InfoTicket = (props) => {
   const [state, setState] = useContext(Ticket);
   const [list, setList] = useContext(ListTicket);
-  const [payment, setPayment]=useState({});
+  const [payment, setPayment] = useState({});
   const [qr, setQr] = useState("");
-  
+
   useEffect(() => {
     console.log(list);
-    let listIdTicket = []
+    let listIdTicket = [];
     list.forEach((element) => {
-      listIdTicket.push(element.id)
-      if (listIdTicket.length == list.length)
-      {
-        axios.put('https://cinema-00wj.onrender.com/tickets/pay/',
-        {
-          owner: 1,
-          tickets: listIdTicket,
-        })
-        
-        .then((res) => {
-          console.log( 'res: ',res.data)
-          setPayment(res.data);
-        })
-        .catch((error)=>{
-          console.log("payment error: ",error);
-        })
-      }
-    
-      
+      listIdTicket.push(element.id);
+      if (listIdTicket.length == list.length) {
+        axios
+          .put("https://cinema-00wj.onrender.com/tickets/pay/", {
+            owner: 1,
+            tickets: listIdTicket,
+          })
 
+          .then((res) => {
+            console.log("res: ", res.data);
+            setPayment(res.data);
+          })
+          .catch((error) => {
+            console.log("payment error: ", error);
+          });
+      }
     });
   }, []);
 
-  useEffect(()=>{
-    setQr("Payment ID: " + payment.id + " User ID:" + payment.owner)
+  useEffect(() => {
+    setQr("Payment ID: " + payment.id + " User ID:" + payment.owner);
   }, [payment]);
-  
+
   console.log("list: ", list);
   return (
-   
     <div className="w-3/4 mx-auto">
       <div>
         <div>
@@ -85,27 +80,19 @@ const InfoTicket = (props) => {
             <tbody>
               <tr>
                 <td>Tên phim</td>
-                <td className="text-right">
-                  
-                </td>
+                <td className="text-right"></td>
               </tr>
               <tr>
                 <td>Rạp phim</td>
-                <td className="text-right">
-                  
-                </td>
+                <td className="text-right"></td>
               </tr>
               <tr>
                 <td>Phòng chiếu</td>
-                <td className="text-right">
-                 
-                </td>
+                <td className="text-right"></td>
               </tr>
               <tr>
                 <td>Suất chiếu</td>
-                <td className="text-right">
-                
-                </td>
+                <td className="text-right"></td>
               </tr>
               <tr>
                 <td>Mã ghế</td>
