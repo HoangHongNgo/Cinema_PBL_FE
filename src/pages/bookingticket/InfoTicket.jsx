@@ -9,14 +9,13 @@ import axios from "axios";
 const InfoTicket = (props) => {
   const [state, setState] = useContext(Ticket);
   const [list, setList] = useContext(ListTicket);
-  const [payment, setPayment]=useState({});
+  const [payment, setPayment] = useState({});
   const [qr, setQr] = useState("");
-  let userid = localStorage.getItem('userID');
+  let userid = localStorage.getItem("userID");
 
-  
   useEffect(() => {
     console.log(list);
-    let listIdTicket = []
+    let listIdTicket = [];
     list.forEach((element) => {
       listIdTicket.push(element.id)
       if (listIdTicket.length == list.length)
@@ -35,19 +34,15 @@ const InfoTicket = (props) => {
           console.log("payment error: ",error);
         })
       }
-    
-      
-
     });
   }, []);
 
   useEffect(()=>{
     setQr("Payment ID: " + payment.id + " User ID:" + userid)
   }, [payment]);
-  
+
   console.log("list: ", list);
   return (
-   
     <div className="w-3/4 mx-auto">
       <div>
         <div>
