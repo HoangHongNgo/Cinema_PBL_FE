@@ -43,9 +43,9 @@ export const Login = () => {
   });
 
   return (
-    <div className="login my-56 md:flex md:justify-center ssm:flex ssm:justify-center ">
+    <div className="login my-56 ">
      <div className="login_container">
-        <ul className="nav_container">
+        <ul className="nav_container md:ml-12">
           <li className="nav_login">
             <Link to="/login" className="a_login">
               Đăng Nhập
@@ -57,9 +57,9 @@ export const Login = () => {
             </Link>
           </li>
         </ul>
-        <div className="form_container ">
+        <div className="form_container xl:w-full md:w-5/6 md:mx-auto ">
           <form onSubmit={onSubmit} noValidate >
-            <div className="form_information ">
+            <div className="form_information xl:flex-nowrap md:flex-wrap ">
               <Input
                 name="email"
                 label="Email"
@@ -77,7 +77,7 @@ export const Login = () => {
                 placeholder="Nhập Mật Khẩu Ở Đây"
                 errorMessage={errors.password?.message}
                 type="password"
-                className="form_input mr-10"
+                className="form_input mr-5"
                 autoComplete="on"
               />
             </div>
