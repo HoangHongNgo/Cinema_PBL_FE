@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ListTicket from "../../context/ListTicket";
 import Ticket from "../../context/Ticket";
 import PropTypes from "prop-types";
@@ -8,6 +8,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { red } from "@mui/material/colors";
 import "./Bookingticket.scss";
+import { useHistory } from "react-router-dom";
+
 
 const StyledFormControlLabel = styled((props) => (
   <FormControlLabel {...props} />
@@ -39,6 +41,17 @@ MyFormControlLabel.propTypes = {
 const Payment = (props) => {
   const [state, setState] = useContext(Ticket);
   const [list, setList] = useContext(ListTicket);
+  let userid = localStorage.getItem('userID');
+  let history = useHistory();
+
+  useEffect(()=>{
+    if (!userid){
+      alert('Bạn cần phải đăng nhập')
+      history.push("/login")
+    }
+  },[])
+
+  
 
   return (
     <div className="">
