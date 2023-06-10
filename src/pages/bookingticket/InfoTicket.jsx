@@ -28,7 +28,7 @@ const InfoTicket = (props) => {
         })
         
         .then((res) => {
-          console.log( 'res: ',res.data)
+          console.log( 'payment: ',res.data)
           setPayment(res.data);
         })
         .catch((error)=>{
@@ -42,7 +42,7 @@ const InfoTicket = (props) => {
   }, []);
 
   useEffect(()=>{
-    setQr("Payment ID: " + payment.id + " User ID:" + payment.owner)
+    setQr("Payment ID: " + payment.id + " User ID:" + userid)
   }, [payment]);
   
   console.log("list: ", list);
@@ -88,25 +88,26 @@ const InfoTicket = (props) => {
               <tr>
                 <td>Tên phim</td>
                 <td className="text-right">
-                  
+
+                 { Array.isArray(payment.tickets) &&payment.tickets[0]?.showtime.movie.name}
                 </td>
               </tr>
               <tr>
                 <td>Rạp phim</td>
                 <td className="text-right">
-                  
+                 {Array.isArray(payment.tickets) && payment.tickets[0]?.showtime.Cinema_Room.cinema.name}
                 </td>
               </tr>
               <tr>
                 <td>Phòng chiếu</td>
                 <td className="text-right">
-                 
+                  {Array.isArray(payment.tickets) &&payment.tickets[0]?.showtime.Cinema_Room.name}
                 </td>
               </tr>
               <tr>
                 <td>Suất chiếu</td>
                 <td className="text-right">
-                
+                  {Array.isArray(payment.tickets) && payment.tickets[0]?.showtime.start_time.slice(0, 10) }
                 </td>
               </tr>
               <tr>
