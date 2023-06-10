@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import PageHeader from "../../components/page-header/PageHeader";
-
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const History=()=>{
 
+    const [ticketowner, setTicketOwner]=useState(null);
+    
+
+    let userid = localStorage.getItem('userID');
+    let history = useHistory();
+
+    useEffect(()=>{
+
+        if(!userid){
+            alert('Bạn cần đăng nhập')
+            history.push("/")
+        }
+        else{
+        axios.get(`https://cinema-00wj.onrender.com/tickets/list/${userid}/`)
+        .then((response) => {
+            setTicketOwner(response.data);
+            console.log("ticket owner", response.data);
+          })
+          .catch((error) => {
+            console.error("Lỗi khi lấy dữ liệu từ API:", error);
+          });
+
+        }
+
+    },[userid]);
+    
+    
     console.log("history");
     return (
         <div>
