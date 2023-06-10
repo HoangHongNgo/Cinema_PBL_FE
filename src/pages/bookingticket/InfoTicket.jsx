@@ -11,6 +11,7 @@ const InfoTicket = (props) => {
   const [list, setList] = useContext(ListTicket);
   const [payment, setPayment] = useState({});
   const [qr, setQr] = useState("");
+  let userid = localStorage.getItem("userID");
 
   useEffect(() => {
     console.log(list);
@@ -20,10 +21,9 @@ const InfoTicket = (props) => {
       if (listIdTicket.length == list.length) {
         axios
           .put("https://cinema-00wj.onrender.com/tickets/pay/", {
-            owner: 1,
+            owner: userid,
             tickets: listIdTicket,
           })
-
           .then((res) => {
             console.log("res: ", res.data);
             setPayment(res.data);
