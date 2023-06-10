@@ -17,26 +17,28 @@ const InfoTicket = (props) => {
     console.log(list);
     let listIdTicket = [];
     list.forEach((element) => {
-      listIdTicket.push(element.id);
-      if (listIdTicket.length == list.length) {
-        axios
-          .put("https://cinema-00wj.onrender.com/tickets/pay/", {
-            owner: userid,
-            tickets: listIdTicket,
-          })
-          .then((res) => {
-            console.log("res: ", res.data);
-            setPayment(res.data);
-          })
-          .catch((error) => {
-            console.log("payment error: ", error);
-          });
+      listIdTicket.push(element.id)
+      if (listIdTicket.length == list.length)
+      {
+        axios.put('https://cinema-00wj.onrender.com/tickets/pay/',
+        {
+          owner: userid ,
+          tickets: listIdTicket,
+        })
+        
+        .then((res) => {
+          console.log( 'payment: ',res.data)
+          setPayment(res.data);
+        })
+        .catch((error)=>{
+          console.log("payment error: ",error);
+        })
       }
     });
   }, []);
 
-  useEffect(() => {
-    setQr("Payment ID: " + payment.id + " User ID:" + payment.owner);
+  useEffect(()=>{
+    setQr("Payment ID: " + payment.id + " User ID:" + userid)
   }, [payment]);
 
   console.log("list: ", list);
@@ -80,19 +82,28 @@ const InfoTicket = (props) => {
             <tbody>
               <tr>
                 <td>Tên phim</td>
-                <td className="text-right"></td>
+                <td className="text-right">
+
+                 { Array.isArray(payment.tickets) &&payment.tickets[0]?.showtime.movie.name}
+                </td>
               </tr>
               <tr>
                 <td>Rạp phim</td>
-                <td className="text-right"></td>
+                <td className="text-right">
+                 {Array.isArray(payment.tickets) && payment.tickets[0]?.showtime.Cinema_Room.cinema.name}
+                </td>
               </tr>
               <tr>
                 <td>Phòng chiếu</td>
-                <td className="text-right"></td>
+                <td className="text-right">
+                  {Array.isArray(payment.tickets) &&payment.tickets[0]?.showtime.Cinema_Room.name}
+                </td>
               </tr>
               <tr>
                 <td>Suất chiếu</td>
-                <td className="text-right"></td>
+                <td className="text-right">
+                  {Array.isArray(payment.tickets) && payment.tickets[0]?.showtime.start_time.slice(0, 10) }
+                </td>
               </tr>
               <tr>
                 <td>Mã ghế</td>
