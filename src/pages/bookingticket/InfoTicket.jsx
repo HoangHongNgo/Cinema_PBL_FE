@@ -9,55 +9,41 @@ import axios from "axios";
 const InfoTicket = (props) => {
   const [state, setState] = useContext(Ticket);
   const [list, setList] = useContext(ListTicket);
-  const [tickets, setTickets] = useState([]);
+  const [payment, setPayment]=useState({});
   const [qr, setQr] = useState("");
+  
   useEffect(() => {
     console.log(list);
+    let listIdTicket = []
     list.forEach((element) => {
-      axios
-        .patch(
-          `https://cinema-00wj.onrender.com/tickets/update/${element.id}/`,
-          {
-            owner: 1,
-            sale_date: new Date().toISOString(),
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          setTickets((prevTickets) => [...prevTickets, res.data]);
-          
-          
-          console.log(
-            "res purchased ticket : ",
-            res.data
-          );
+      listIdTicket.push(element.id)
+      if (listIdTicket.length == list.length)
+      {
+        axios.put('https://cinema-00wj.onrender.com/tickets/pay/',
+        {
+          owner: 1,
+          tickets: listIdTicket,
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        
+        .then((res) => {
+          console.log( 'res: ',res.data)
+          setPayment(res.data);
+        })
+        .catch((error)=>{
+          console.log("payment error: ",error);
+        })
+      }
+    
+      
+
     });
   }, []);
 
   useEffect(()=>{
-    let ticketInfo = tickets
-            .map(
-              (ticket) =>
-                `Ticket ID: ${ticket.id}, Owner ID: ${ticket.owner.id}`
-            )
-            .join(", ");
-          setQr(
-            ticketInfo
-          );
-          console.log( "ticket info : ",
-          qr);
-
-
-  }, [tickets]);
-  console.log("tickets : ", tickets);
+    setQr("Payment ID: " + payment.id + " User ID:" + payment.owner)
+  }, [payment]);
+  
+  console.log("list: ", list);
   return (
    
     <div className="w-3/4 mx-auto">
@@ -100,34 +86,25 @@ const InfoTicket = (props) => {
               <tr>
                 <td>Tên phim</td>
                 <td className="text-right">
-                  {tickets[0]?.showtime.movie.name}
+                  
                 </td>
               </tr>
               <tr>
                 <td>Rạp phim</td>
                 <td className="text-right">
-                  {tickets[0]?.showtime.Cinema_Room.cinema.name}
+                  
                 </td>
               </tr>
               <tr>
                 <td>Phòng chiếu</td>
                 <td className="text-right">
-                  {tickets[0]?.showtime.Cinema_Room.id}
+                 
                 </td>
               </tr>
               <tr>
                 <td>Suất chiếu</td>
                 <td className="text-right">
-                  {new Date(tickets[0]?.showtime.start_time).toLocaleString(
-                    "en-US",
-                    {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }
-                  )}
+                
                 </td>
               </tr>
               <tr>

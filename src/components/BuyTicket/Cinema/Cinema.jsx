@@ -25,7 +25,7 @@ export default function Cinema() {
     });
 }, [cityId]);
   return (
-    <div className="col-1">
+    <div className="col-1 w-1/4 md:w-auto">
       <ul className="list-group">
         {cinemas.map((cinema_brand) =>(
           <div>

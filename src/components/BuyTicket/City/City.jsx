@@ -20,7 +20,7 @@ export default function City() {
       });
   }, []);
   return (
-    <div className="col-1">
+    <div className="col-1 w-1/4 md:w-auto">
       {/* <a href="#" className="list-group-item  list-group-region">
         Khu vực
       </a> */}

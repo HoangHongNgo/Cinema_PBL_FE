@@ -166,7 +166,7 @@ const ChoiceSeat = (props) => {
                                 >
                                   <li
                                     className={`textticket  ${
-                                      seat.owner == null ? "" : "taken"
+                                      seat.payment == null ? "" : "taken"
                                     } `}
                                   >
                                     {seat.seat_num}
