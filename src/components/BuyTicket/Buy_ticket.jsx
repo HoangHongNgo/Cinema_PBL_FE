@@ -9,20 +9,16 @@ import LichChieu from "./LichChieu/LichChieu";
 import { AppProvider } from "../../contexts/app.context";
 import { useState, createContext } from "react";
 
-
 export default function Buy_ticket() {
-  const [state, setState] = useState({})
-
+  const [state, setState] = useState({});
 
   return (
-
-    <div className="container buyticket">
+    <div className="container buyticket md:p-16 md:flex md:flex-col xl:p-32 xl:grid">
       <AppProvider>
         <City />
         <Cinema />
         <LichChieu />
       </AppProvider>
     </div>
-   
   );
 }

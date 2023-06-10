@@ -1,8 +1,8 @@
 .buyticket {
+
   // grid-column: span 2 / span 2;
   // grid-column-start: 1;
   // grid-column-end: 3;
-  display: grid !important;
   margin-top: 100px;
   // margin: 100px auto;
   // margin-top: 100px;
@@ -11,11 +11,9 @@
   grid-template-columns: 2fr 2fr 4fr;
   gap: 2rem;
   //new
-  display: grid;
   // grid-template-columns: repeat(12, minmax(0, 1fr));
   justify-content: center;
   // width: 66%;
-  padding: 6rem;
   .col-1 {
     // grid-column: 2 / span 2;
     border-radius: 0.2rem;
