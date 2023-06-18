@@ -11,6 +11,7 @@ import { RemovedUserSession, SetUserSession } from "../../utils/Common";
 import axios from "axios";
 import AppContext from "../../contexts/app.context";
 import { useHistory } from "react-router-dom";
+import endpoint from "../../api/endpoint";
 
 const loginSchema = schema.omit(["confirm_password"]);
 export const Register = () => {
@@ -33,7 +34,7 @@ export const Register = () => {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     axios
-      .post("https://cinema-00wj.onrender.com/user/register/", data)
+      .post(`${endpoint}/user/register/`, data)
       .then((response) => {
         console.log("data : ", data);
         console.log("register success");

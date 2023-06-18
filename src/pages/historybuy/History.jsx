@@ -3,6 +3,7 @@ import PageHeader from "../../components/page-header/PageHeader";
 import axios from "axios";
 import QRCode from "react-qr-code";
 import { useHistory } from "react-router-dom";
+import endpoint from "../../api/endpoint";
 
 const History=()=>{
 
@@ -19,7 +20,7 @@ const History=()=>{
             history.push("/")
         }
         else{
-        axios.get(`https://cinema-00wj.onrender.com/tickets/list/${userid}/`)
+        axios.get(`${endpoint}/tickets/list/${userid}/`)
         .then((response) => {
             setTicketOwner(response.data);
             console.log("ticket owner", response.data);

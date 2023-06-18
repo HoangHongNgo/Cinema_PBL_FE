@@ -8,6 +8,7 @@ import Button from "../button/Button";
 import Input from "../input/InputBase";
 
 import axios from "axios";
+import endpoint from "../../api/endpoint";
 
 const MovieGrid = (props) => {
   const [items, setItems] = useState([]);
@@ -17,7 +18,7 @@ const MovieGrid = (props) => {
   useEffect(() => {
     console.log("status : ", props.status);
     axios
-      .get(`https://cinema-00wj.onrender.com/movies/`)
+      .get(`${endpoint}/movies/`)
       .then((response) => {
         setItems(
           response.data.filter((movie) => {
@@ -38,7 +39,7 @@ const MovieGrid = (props) => {
       console.log("keywords[1] : ", keywords[1]);
       axios
         .get(
-          `https://cinema-00wj.onrender.com/movies/search${
+          `${endpoint}/movies/search${
             keywords[0] == "rdf" ? "_rdf" : ""
           }/?search=${keywords[1]}`
         )

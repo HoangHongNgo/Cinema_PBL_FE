@@ -13,6 +13,7 @@ import apiConfig from "../../api/apiConfig";
 
 import MovieCard from "../movie-card/MovieCard";
 import axios from "axios";
+import endpoint from "../../api/endpoint";
 
 const MovieList = (props) => {
   const [items, setItems] = useState([]);
@@ -21,7 +22,7 @@ const MovieList = (props) => {
   
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
-    axios.get(`https://cinema-00wj.onrender.com/movies/`)
+    axios.get(`${endpoint}/movies/`)
       .then((response) => {
         setItems(response.data.filter(movie => {
           return movie.status === type;

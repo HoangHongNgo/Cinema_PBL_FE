@@ -1,4 +1,5 @@
-const urlApi = "https://cinema-00wj.onrender.com/";
+import endpoint from "./endpoint";
+const urlApi = `${endpoint}/`;
 // const urlApi = "https://api.themoviedb.org/3/";
 
 export default urlApi;

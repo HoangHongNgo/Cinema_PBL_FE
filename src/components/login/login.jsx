@@ -10,6 +10,7 @@ import AppContext from "../../contexts/app.context";
 import { useHistory } from "react-router-dom";
 import { RemovedUserSession, SetUserSession } from "../../utils/Common";
 import axios from "axios";
+import endpoint from "../../api/endpoint";
 
 const loginSchema = schema.omit(["confirm_password"]);
 
@@ -29,7 +30,7 @@ export const Login = () => {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     axios
-      .post("https://cinema-00wj.onrender.com/user/login/", data)
+      .post(`${endpoint}/user/login/`, data)
       .then((response) => {
         console.log("response : ", response.data);
         setIsLoggedIn(true);

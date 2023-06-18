@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useLocation } from "react";
 import axios from "axios";
+import endpoint from "../../../api/endpoint";
 import { Link } from "react-router-dom";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -16,7 +17,7 @@ export default function Cinema() {
     // Lấy dữ liệu từ API bằng Axios
     axios
       .get(
-        `https://cinema-00wj.onrender.com/cinemas/cinema/?city=${
+        `${endpoint}/cinemas/cinema/?city=${
           cityId ? cityId : 1
         }`
       )
