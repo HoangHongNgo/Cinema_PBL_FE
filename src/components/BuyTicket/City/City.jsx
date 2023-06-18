@@ -9,6 +9,7 @@ import {
   Menu,
 } from "@material-ui/core";
 import axios from "axios";
+import endpoint from "../../../api/endpoint";
 
 const useStyles = makeStyles(() => ({
   select: {
@@ -43,7 +44,7 @@ export default function City() {
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
-      .get(`https://cinema-00wj.onrender.com/cinemas/cities/`)
+      .get(`${endpoint}/cinemas/cities/`)
       .then((response) => {
         setCityList(response.data);
         console.log("cities", response.data);

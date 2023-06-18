@@ -4,6 +4,7 @@ import Input from "../../components/input/InputBase";
 import Button, { OutlineButton } from "../../components/button/Button";
 import Blog_Post from "./Blog_Post";
 import axios from "axios";
+import endpoint from "../../api/endpoint";
 
 import "./blog.scss";
 
@@ -19,7 +20,7 @@ const Blog = () => {
     };
     // Send a POST request using Axios
     axios
-      .post("https://cinema-00wj.onrender.com/blogs/post", blogData)
+      .post(`${endpoint}/blogs/post`, blogData)
       .then((response) => {
         // Handle the response data
         console.log(response.data);
@@ -32,7 +33,7 @@ const Blog = () => {
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
-      .get(`https://cinema-00wj.onrender.com/blogs/`)
+      .get(`${endpoint}/blogs/`)
       .then((response) => {
         setBlogList(response.data);
         console.log("blogs : ", response.data);
