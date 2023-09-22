@@ -52,12 +52,12 @@ const Blog = () => {
               <div className="m-5">
                 <div className="w-full">
                   <div className="">
-                    <Input
-                      className="w-full h-12"
+                    <textarea
+                      className="w-full h-24 p-5 rounded-2xl bg-neutral-900"
                       placeholder="Bạn đang nghĩ gì ..."
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                    ></Input>
+                    ></textarea>
                   </div>
                 </div>
                 <div className="flex justify-start mt-4">
