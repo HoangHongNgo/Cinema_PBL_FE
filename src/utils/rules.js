@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import * as yup from "yup";
 
 export const schema = yup
