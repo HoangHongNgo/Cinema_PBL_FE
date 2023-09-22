@@ -5,6 +5,7 @@ import "tailwindcss/tailwind.css";
 import ListTicket from "../../context/ListTicket";
 import QRCode from "react-qr-code";
 import axios from "axios";
+import endpoint from "../../api/endpoint";
 
 const InfoTicket = (props) => {
   const [state, setState] = useContext(Ticket);
@@ -20,7 +21,7 @@ const InfoTicket = (props) => {
       listIdTicket.push(element.id)
       if (listIdTicket.length == list.length)
       {
-        axios.put('https://cinema-00wj.onrender.com/tickets/pay/',
+        axios.put(`${endpoint}/tickets/pay/`,
         {
           owner: userid ,
           tickets: listIdTicket,

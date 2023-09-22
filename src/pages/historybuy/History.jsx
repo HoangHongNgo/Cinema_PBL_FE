@@ -5,6 +5,7 @@ import QRCode from "react-qr-code";
 import { useHistory } from "react-router-dom";
 import "./history.scss";
 import Modal from "../../components/modal_base/Modal";
+import endpoint from "../../api/endpoint";
 
 const History = () => {
   const [ticketowner, setTicketOwner] = useState(null);
@@ -26,12 +27,12 @@ const History = () => {
   let history = useHistory();
 
   useEffect(() => {
-    if (!userid) {
-      alert("Bạn cần đăng nhập");
-      history.push("/");
-    } else {
-      axios
-        .get(`https://cinema-00wj.onrender.com/tickets/list/${userid}/`)
+        if(!userid){
+            alert('Bạn cần đăng nhập')
+            history.push("/")
+        }
+        else{
+        axios.get(`${endpoint}/tickets/list/${userid}/`)
         .then((response) => {
           setTicketOwner(response.data);
           console.log("payment : ", response.data);

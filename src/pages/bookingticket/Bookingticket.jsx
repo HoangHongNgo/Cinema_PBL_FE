@@ -23,6 +23,7 @@ import "tailwindcss/tailwind.css";
 import ListTicket from "../../context/ListTicket";
 import InfoTicket from "./InfoTicket";
 import { Link, useLocation, useHistory } from "react-router-dom";
+import endpoint from "../../api/endpoint";
 
 const NextButton = styled(Button)({
   border: "1px solid transparent",
@@ -223,7 +224,7 @@ const Bookingticket = () => {
     console.log("GET API");
     // Lấy dữ liệu từ API bằng Axios
     axios
-      .get(`https://cinema-00wj.onrender.com/shows/${id}/`)
+      .get(`${endpoint}/shows/${id}/`)
       .then((response) => {
         console.log(response);
         setShow(response.data);
@@ -234,7 +235,7 @@ const Bookingticket = () => {
         console.error("Lỗi khi lấy dữ liệu từ API:", error);
       });
     axios
-      .get(`https://cinema-00wj.onrender.com/tickets/show/${id}/`)
+      .get(`${endpoint}/tickets/show/${id}/`)
       .then((response) => {
         // console.log(response);
         setSeats(response.data);

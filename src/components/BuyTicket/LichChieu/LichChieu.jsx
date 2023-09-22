@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ShowtimesDate from "./../Date/Date";
 import { Link } from "react-router-dom";
+import endpoint from "../../../api/endpoint";
 
 export default function LichChieu() {
   const queryParams = new URLSearchParams(window.location.search);
@@ -18,7 +19,7 @@ export default function LichChieu() {
     // Lấy dữ liệu từ API bằng Axios
     axios
       .get(
-        `https://cinema-00wj.onrender.com/shows/?cinema=${cinemaId}&date=${date}${
+        `${endpoint}/shows/?cinema=${cinemaId}&date=${date}${
           movie ? `&movie=${movie}` : ""
         }`
       )
@@ -33,7 +34,7 @@ export default function LichChieu() {
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
-      .get(`https://cinema-00wj.onrender.com/cinemas/cinema/${cinemaId}/`)
+      .get(`${endpoint}/cinemas/cinema/${cinemaId}/`)
       .then((response) => {
         setCinema(response.data);
         console.log("cinema : ", response.data);
@@ -41,7 +42,7 @@ export default function LichChieu() {
       .catch((error) => {
         console.error(
           "Lỗi khi lấy dữ liệu từ API:",
-          `https://cinema-00wj.onrender.com/cinemas/cinema/${cinemaId}`,
+          `${endpoint}/cinemas/cinema/${cinemaId}`,
           error
         );
       });
