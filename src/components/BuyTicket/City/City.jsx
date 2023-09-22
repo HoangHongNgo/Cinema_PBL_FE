@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import {
   Select,
   MenuItem,
@@ -35,12 +35,16 @@ export default function City() {
     name: "Đà Nẵng",
   });
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    // Lấy dữ liệu từ API bằng Axios
-    history.push(`/buyticket/?city=${city.id}`);
-  }, [city]);
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("city", city.id);
 
+    history.push({
+      search: queryParams.toString(),
+    });
+  }, [city, location.search, history]);
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
