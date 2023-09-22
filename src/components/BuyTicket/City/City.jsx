@@ -1,13 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {
-  Select,
-  MenuItem,
-  InputLabel,
-  makeStyles,
-  Menu,
-} from "@material-ui/core";
+import { Select, MenuItem, InputLabel, makeStyles, Menu } from "@material-ui/core";
 import axios from "axios";
 import endpoint from "../../../api/endpoint";
 
@@ -35,12 +29,16 @@ export default function City() {
     name: "Đà Nẵng",
   });
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    // Lấy dữ liệu từ API bằng Axios
-    history.push(`/buyticket/?city=${city.id}`);
-  }, [city]);
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("city", city.id);
 
+    history.push({
+      search: queryParams.toString(),
+    });
+  }, [city, location.search, history]);
   useEffect(() => {
     // Lấy dữ liệu từ API bằng Axios
     axios
@@ -64,10 +62,7 @@ export default function City() {
             <li className="list-group-item  list-group-region">Khu vực</li>
             {cityList?.map((city) => (
               <li className="list-group-item  d-flex justify-content-between align-items-center btn-choose-region">
-                <Link
-                  to={`/buyticket/?city=${city.id}`}
-                  className={`item ${city.id == cityId ? "focus" : ""}`}
-                >
+                <Link to={`/buyticket/?city=${city.id}`} className={`item ${city.id == cityId ? "focus" : ""}`}>
                   {city.name}
                 </Link>
               </li>
